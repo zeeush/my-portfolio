@@ -34,7 +34,7 @@ export default function ContactSection() {
           href={WHATSAPP_DM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-950/30 border border-cyan-400/50 text-cyan-300 hover:text-cyan-200 text-sm sm:text-base font-['JetBrains_Mono',monospace] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 hover:border-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.35)] drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] cursor-pointer group"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-400/60 text-cyan-300 hover:text-cyan-100 text-sm sm:text-base font-['JetBrains_Mono',monospace] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 hover:border-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.35)] drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] cursor-pointer group"
         >
           <i className="ph ph-cursor-click text-cyan-400 text-base sm:text-lg animate-bounce group-hover:rotate-12 transition-transform" />
           <span>LET&apos;S COLLABORATE</span>
@@ -50,14 +50,14 @@ export default function ContactSection() {
           LET&apos;S FORGE AN ICONIC BRAND IDENTITY THAT COMMANDS ATTENTION.
         </p>
 
-        {/* Transparent Floating CTA Button Stack */}
+        {/* High-Contrast Floating CTA Button Stack */}
         <motion.div 
-          className="my-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mx-auto bg-transparent border-0 p-0 relative z-20"
+          className="my-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto mx-auto relative z-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Button 1: Start a Project - Electric Cyan Hyper-Glow Gradient */}
+          {/* Button 1: Primary Action (Start a Project) - Solid Vibrant Electric Cyan with High Contrast */}
           <motion.div
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
@@ -66,20 +66,20 @@ export default function ContactSection() {
           >
             <Link
               href="/start-project"
-              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[200px] sm:min-w-[210px] min-h-[48px] px-8 sm:px-10 py-3 rounded-lg bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 text-zinc-950 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_20px_rgba(0,242,254,0.65)] hover:shadow-[0_0_35px_rgba(0,242,254,0.95)] transition-all duration-300 gap-2 cursor-pointer group/btn whitespace-nowrap"
+              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[210px] sm:min-w-[230px] min-h-[52px] px-8 sm:px-10 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 border-2 border-white/60 text-zinc-950 font-['Outfit',sans-serif] font-black text-sm sm:text-base tracking-[0.08em] uppercase shadow-[0_0_30px_rgba(0,242,254,0.7),0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_0_45px_rgba(0,242,254,1)] transition-all duration-300 gap-2.5 cursor-pointer group/btn whitespace-nowrap"
             >
               {/* Light Sweep Shimmer Effect */}
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] pointer-events-none" />
-              <span className="tracking-wider uppercase whitespace-nowrap leading-none">Start a Project</span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/45 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] pointer-events-none" />
+              <span className="tracking-[0.08em] uppercase whitespace-nowrap leading-none">Start a Project</span>
               <motion.i 
-                className="ph ph-paper-plane-tilt text-sm sm:text-base font-bold text-zinc-950 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform flex-shrink-0 leading-none"
+                className="ph ph-paper-plane-tilt text-base sm:text-lg font-black text-zinc-950 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform flex-shrink-0 leading-none"
                 animate={{ y: [0, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
               />
             </Link>
           </motion.div>
 
-          {/* Button 2: Direct Message - Deep Obsidian Neon Violet Glass Card (WhatsApp) */}
+          {/* Button 2: Secondary Action (Direct Message) - Solid WhatsApp Emerald Card with Strong Border & Contrast */}
           <motion.div
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
@@ -90,29 +90,17 @@ export default function ContactSection() {
               href={WHATSAPP_DM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[200px] sm:min-w-[210px] min-h-[48px] px-8 sm:px-10 py-3 rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-100 hover:bg-purple-600/50 hover:border-purple-400 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_18px_rgba(168,85,247,0.35)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all duration-300 gap-2 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap"
+              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[210px] sm:min-w-[230px] min-h-[52px] px-8 sm:px-10 py-3.5 rounded-xl bg-[#061e18]/95 hover:bg-emerald-950 border-2 border-emerald-400/90 text-emerald-300 hover:text-white font-['Outfit',sans-serif] font-black text-sm sm:text-base tracking-[0.08em] uppercase shadow-[0_0_25px_rgba(16,185,129,0.45),0_10px_25px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(16,185,129,0.85)] hover:border-emerald-300 transition-all duration-300 gap-2.5 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap"
             >
-              <span className="tracking-wider uppercase group-hover/btn:text-white transition-colors whitespace-nowrap leading-none">Direct Message</span>
-              <svg 
-                className="w-4 h-4 text-purple-200 group-hover/btn:text-white transition-colors flex-shrink-0" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-                <path d="M8 12h.01" />
-                <path d="M12 12h.01" />
-                <path d="M16 12h.01" />
-              </svg>
+              {/* WhatsApp Icon */}
+              <i className="ph ph-whatsapp-logo text-lg sm:text-xl text-emerald-400 group-hover/btn:text-white group-hover/btn:scale-110 transition-transform flex-shrink-0" />
+              <span className="tracking-[0.08em] uppercase group-hover/btn:text-white transition-colors whitespace-nowrap leading-none">Direct Message</span>
             </Link>
           </motion.div>
         </motion.div>
 
         {/* Line 4: Body Description (Plus Jakarta Sans) */}
-        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-400 font-normal text-sm sm:text-base leading-relaxed max-w-xl mx-auto mt-4 px-2 sm:px-0">
+        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-400 font-normal text-sm sm:text-base leading-relaxed max-w-xl mx-auto mt-2 px-2 sm:px-0">
           Whether you need an iconic logo, a high-converting banner set, or a complete brand ecosystem—let&apos;s build something unforgettable together.
         </p>
 
