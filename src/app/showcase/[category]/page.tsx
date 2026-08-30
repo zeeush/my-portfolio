@@ -60,11 +60,11 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
       <div className="relative z-10 w-full min-h-screen pt-28 pb-16 flex flex-col justify-center items-center">
         
         {/* Middle Tier: Active Folder Title & Category Header */}
-        <div className="w-full max-w-5xl mx-auto px-6 mb-8 flex flex-col items-center justify-center text-center gap-2 relative">
-          <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block text-center drop-shadow-[0_0_6px_rgba(0,229,255,0.6)]">
+        <div className="w-full max-w-5xl mx-auto px-6 mb-8 flex flex-col items-center justify-center text-center gap-2.5 relative">
+          <span className="text-sm sm:text-base font-mono text-cyan-400 tracking-[0.25em] uppercase font-bold block text-center drop-shadow-[0_0_10px_rgba(0,229,255,0.85)]">
             PORTFOLIO SHOWCASE
           </span>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white font-['Outfit'] tracking-wide text-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white font-['Outfit'] tracking-wide text-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             {title}
           </h2>
         </div>

@@ -134,13 +134,21 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 select-none relative">
       
-      {/* ================= STICKY BACK NAVIGATION BUTTON ================= */}
+      {/* ================= 5. ENLARGED STICKY BACK NAVIGATION BUTTON ================= */}
       <button
         onClick={handleBackNavigation}
-        className="fixed top-20 left-4 sm:left-8 z-40 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-950/85 hover:bg-cyan-950/50 border border-white/15 hover:border-cyan-400/80 text-cyan-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] transition-all duration-200 font-mono text-xs uppercase tracking-widest cursor-pointer group"
+        className="fixed top-20 left-4 sm:left-8 z-40 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-zinc-950/80 hover:bg-cyan-950/60 border border-white/20 hover:border-cyan-400/80 text-cyan-300 hover:text-white backdrop-blur-md shadow-xl hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:scale-105 active:scale-95 transition-all duration-200 font-mono text-sm sm:text-base uppercase tracking-wider font-semibold cursor-pointer group"
         aria-label="Back to Work"
       >
-        <i className="ph ph-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
+        <svg
+          className="w-5 h-5 text-cyan-400 group-hover:text-white group-hover:-translate-x-1 transition-transform"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
         <span>Back to Work</span>
       </button>
 
@@ -260,8 +268,10 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                   {/* 1. Centered Magnifying-Glass Icon & 'Click to Expand' Fade-In on Hover */}
                   {isCenter && (
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 border border-cyan-400/60 text-cyan-300 text-xs font-mono font-bold tracking-wider uppercase shadow-[0_0_25px_rgba(0,229,255,0.5)] backdrop-blur-sm">
-                        <i className="ph ph-magnifying-glass-plus text-base text-cyan-400"></i>
+                      <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/80 border border-cyan-400/60 text-cyan-300 text-xs sm:text-sm font-mono font-bold tracking-wider uppercase shadow-[0_0_25px_rgba(0,229,255,0.5)] backdrop-blur-sm">
+                        <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
                         <span>Click to Expand</span>
                       </div>
                     </div>
@@ -277,37 +287,41 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
           })}
         </div>
 
-        {/* 2. Previous Navigation Arrow Button (Circular, Dark Semi-Transparent, Hover Scale) */}
+        {/* 2 & 3. Previous Navigation Arrow Button (Circular, 50% Semi-Transparent, Hover Scale & Darkening) */}
         <button
           onClick={prevSlide}
           aria-label="Previous image"
-          className="absolute -left-3 sm:-left-6 md:-left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_25px_rgba(0,229,255,0.45)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer z-40"
+          className="absolute -left-3 sm:-left-6 md:-left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/85 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-xl hover:shadow-[0_0_25px_rgba(0,229,255,0.45)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer z-40 group"
         >
-          <i className="ph ph-caret-left-bold text-xl sm:text-2xl"></i>
+          <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
         </button>
 
-        {/* 2. Next Navigation Arrow Button (Circular, Dark Semi-Transparent, Hover Scale) */}
+        {/* 2 & 3. Next Navigation Arrow Button (Circular, 50% Semi-Transparent, Hover Scale & Darkening) */}
         <button
           onClick={nextSlide}
           aria-label="Next image"
-          className="absolute -right-3 sm:-right-6 md:-right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:shadow-[0_0_25px_rgba(0,229,255,0.45)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer z-40"
+          className="absolute -right-3 sm:-right-6 md:-right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/85 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-xl hover:shadow-[0_0_25px_rgba(0,229,255,0.45)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer z-40 group"
         >
-          <i className="ph ph-caret-right-bold text-xl sm:text-2xl"></i>
+          <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
         </button>
 
       </div>
 
-      {/* ================= FREE-FLOATING PROJECT METADATA ================= */}
+      {/* ================= 6. ENLARGED PROJECT DESCRIPTION BOX (PROPER INTERNAL PADDING) ================= */}
       <motion.div
         key={activeItem.id}
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-4xl mx-auto mt-8 px-4 flex flex-col items-center text-center gap-2.5 relative z-30"
+        className="w-full max-w-3xl mx-auto mt-8 p-6 sm:p-8 rounded-2xl bg-zinc-950/70 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col items-center text-center gap-3 relative z-30"
       >
         {/* Top Row: Tagline & Category Tags */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-0.5">
-          <span className="text-xs font-mono text-cyan-400 tracking-widest uppercase font-bold drop-shadow-[0_0_10px_rgba(0,229,255,0.85)]">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-1">
+          <span className="text-xs sm:text-sm font-mono text-cyan-400 tracking-widest uppercase font-bold drop-shadow-[0_0_10px_rgba(0,229,255,0.85)]">
             {activeItem.tagline}
           </span>
           <div className="flex items-center gap-2">
@@ -323,14 +337,16 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
         </div>
 
         {/* Project Title */}
-        <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide font-['Outfit'] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-wide font-['Outfit'] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
           {activeItem.title}
         </h3>
 
-        {/* Description */}
-        <p className="text-sm text-zinc-300 leading-relaxed font-sans max-w-2xl text-center">
-          {activeItem.description}
-        </p>
+        {/* Enlarge Description with Generous Breathing Room */}
+        <div className="w-full pt-2">
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-sans max-w-2xl mx-auto text-center">
+            {activeItem.description}
+          </p>
+        </div>
       </motion.div>
 
       {/* ================= 3. IMAGE / PROJECT COUNTER & PAGINATION ================= */}
@@ -350,7 +366,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
           ))}
         </div>
         {/* Unambiguous Counter: Image X of Y */}
-        <span className="text-xs font-mono text-zinc-400 tracking-wider ml-2">
+        <span className="text-xs sm:text-sm font-mono text-zinc-400 tracking-wider ml-2">
           Image {currentIndex + 1} of {total}
         </span>
       </div>
@@ -363,33 +379,37 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 w-screen h-screen bg-black/80 backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-6 select-none overflow-hidden"
+            className="fixed inset-0 z-[9999] w-screen h-screen bg-black/80 backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-6 select-none overflow-hidden"
             onClick={() => setIsLightboxOpen(false)}
           >
             {/* Ambient Lighting Glows */}
             <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
             <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-            {/* 4. Fixed Top-Right Close Button ('✕') */}
+            {/* 1 & 2 & 3. Fixed Top-Right Close Button ('✕' Icon, z-[10000] Above All Headers, Semi-Transparent 50%) */}
             <button
               onClick={() => setIsLightboxOpen(false)}
               aria-label="Close fullscreen view"
-              className="fixed top-6 right-6 z-50 w-11 h-11 rounded-full bg-black/70 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-lg hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="fixed top-6 right-6 z-[10000] w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
               title="Close (Esc)"
             >
-              <i className="ph ph-x text-2xl font-bold"></i>
+              <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
 
-            {/* 4. Circular Navigation Arrows (Left / Right) */}
+            {/* 2 & 3. Circular Navigation Arrows (Left / Right, 50% Semi-Transparent) */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 prevSlide();
               }}
               aria-label="Previous image"
-              className="fixed left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="fixed left-4 sm:left-8 top-1/2 -translate-y-1/2 z-[10000] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 hover:bg-black/85 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
             >
-              <i className="ph ph-caret-left-bold text-2xl"></i>
+              <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
 
             <button
@@ -398,14 +418,16 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                 nextSlide();
               }}
               aria-label="Next image"
-              className="fixed right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="fixed right-4 sm:right-8 top-1/2 -translate-y-1/2 z-[10000] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 hover:bg-black/85 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
             >
-              <i className="ph ph-caret-right-bold text-2xl"></i>
+              <svg className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
 
-            {/* 4. Main Stage Artwork (Scaled to fit viewport without cropping) */}
+            {/* Main Stage Artwork (Scaled to fit viewport without cropping) */}
             <div
-              className="relative flex-1 w-full flex items-center justify-center my-auto min-h-0 pt-8 sm:pt-4"
+              className="relative flex-1 w-full flex items-center justify-center my-auto min-h-0 pt-10 sm:pt-4"
               onClick={(e) => e.stopPropagation()}
             >
               <AnimatePresence mode="wait">
@@ -415,26 +437,26 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="relative flex items-center justify-center max-h-[66vh] sm:max-h-[70vh] w-auto max-w-[90vw]"
+                  className="relative flex items-center justify-center max-h-[62vh] sm:max-h-[66vh] w-auto max-w-[90vw]"
                   onTouchStart={handleTouchStart}
                   onTouchEnd={handleTouchEnd}
                 >
                   <img
                     src={activeItem.imageUrl}
                     alt={activeItem.title}
-                    className="max-h-[66vh] sm:max-h-[70vh] w-auto max-w-[90vw] object-contain rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-white/10"
+                    className="max-h-[62vh] sm:max-h-[66vh] w-auto max-w-[90vw] object-contain rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-white/10"
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* 4. Horizontal Thumbnail Strip & Metadata Bar Below Main Image */}
+            {/* 6. Enlarge Lightbox Description Box with Ample Internal Spacing & Horizontal Thumbnails Strip */}
             <div
-              className="w-full max-w-4xl mx-auto flex flex-col items-center gap-3 z-40 pb-2"
+              className="w-full max-w-3xl mx-auto flex flex-col items-center gap-3 z-40 pb-3"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Project Title & Unambiguous Image Counter */}
-              <div className="text-center px-4">
+              {/* Project Title & Counter Card with Proper Padding */}
+              <div className="w-full max-w-2xl px-6 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-zinc-950/70 border border-white/10 backdrop-blur-md shadow-xl text-center">
                 <h4 className="text-lg sm:text-xl font-bold text-white font-['Outfit'] tracking-wide">
                   {activeItem.title}
                 </h4>
@@ -444,7 +466,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
               </div>
 
               {/* Horizontal Thumbnail Jump Strip */}
-              <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto py-2 px-4 max-w-full scrollbar-none">
+              <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto py-1 px-4 max-w-full scrollbar-none">
                 {items.map((it, idx) => (
                   <button
                     key={it.id || idx}
