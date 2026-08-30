@@ -2,20 +2,20 @@
   {
     "id": "sitm-institute",
     "title": "SITM Academic Crest",
-    "companyName": "SITM Institute",
+    "companyName": "SITM Academic Crest",
     "year": "2025",
     "category": "logo",
     "categoryName": "Logo & Brand Identity",
     "folderSlug": "logo",
-    "tagline": "ACADEMIC IDENTITY & INSTITUTIONAL BRANDING #InstitutionalIdentity #AcademicBranding #CrestDesign",
+    "tagline": "ACADEMIC IDENTITY & INSTITUTIONAL BRANDING #InstitutionalIdentity #AcademicBranding",
     "description": "An extensive end-to-end identity system designed for a technical educational institute, fusing industrial engineering iconography with global connectivity motifs. Built with structured royal navy and periwinkle tones.",
     "tags": [
       "#InstitutionalIdentity",
-      "#AcademicBranding",
-      "#CrestDesign"
+      "#AcademicBranding"
     ],
     "imageUrl": "/images/showcase/sitm-institute-mockup.png",
-    "createdAt": "2026-08-22T12:00:00.000Z"
+    "createdAt": "2026-08-22T12:00:00.000Z",
+    "updatedAt": "2026-08-30T23:22:03.640Z"
   },
   {
     "id": "bit-n-bite",

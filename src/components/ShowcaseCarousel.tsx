@@ -313,42 +313,39 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
 
       </div>
 
-      {/* ================= 6. ENLARGED PROJECT DESCRIPTION BOX (PROPER INTERNAL PADDING) ================= */}
+      {/* ================= PROJECT DETAILS (CLEAN DIRECT PAGE BACKGROUND - NO BOX) ================= */}
       <motion.div
         key={activeItem.id}
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-3xl mx-auto mt-8 p-6 sm:p-8 rounded-2xl bg-zinc-950/70 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col items-center text-center gap-3 relative z-30"
+        className="w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-3 mt-6 relative z-30 px-4"
       >
-        {/* Top Row: Tagline & Category Tags */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-1">
-          <span className="text-xs sm:text-sm font-mono text-cyan-400 tracking-widest uppercase font-bold drop-shadow-[0_0_10px_rgba(0,229,255,0.85)]">
-            {activeItem.tagline}
-          </span>
-          <div className="flex items-center gap-2">
-            {activeItem.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-mono text-cyan-300/80 drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Project Title */}
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-wide font-['Outfit'] drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        {/* 1. Project Title (Header): Clear and prominent */}
+        <h3 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-['Outfit',sans-serif]">
           {activeItem.title}
         </h3>
 
-        {/* Enlarge Description with Generous Breathing Room */}
-        <div className="w-full pt-2">
-          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-sans max-w-2xl mx-auto text-center">
-            {activeItem.description}
-          </p>
-        </div>
+        {/* 2. Category / Sub-header: Right below the title in slightly muted tone */}
+        <p className="text-sm font-medium text-zinc-400 uppercase tracking-widest font-mono">
+          {activeItem.tagline}
+        </p>
+
+        {/* 3. Project Details / Description: High readability with clean line spacing */}
+        <p className="text-sm leading-relaxed text-zinc-300 max-w-2xl mx-auto font-['Inter',sans-serif]">
+          {activeItem.description}
+        </p>
+
+        {/* 4. Hashtags Formatting: Isolated at bottom, smaller, subtle cyan brand color */}
+        {activeItem.tags && activeItem.tags.length > 0 && (
+          <div className="text-xs font-mono text-cyan-500/80 flex flex-wrap justify-center items-center gap-2 mt-1">
+            {activeItem.tags.map((tag) => (
+              <span key={tag} className="hover:text-cyan-400 transition-colors">
+                {tag.startsWith('#') ? tag : `#${tag}`}
+              </span>
+            ))}
+          </div>
+        )}
       </motion.div>
 
       {/* ================= 3. IMAGE / PROJECT COUNTER & PAGINATION ================= */}
@@ -451,19 +448,22 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
               </AnimatePresence>
             </div>
 
-            {/* 6. Enlarge Lightbox Description Box with Ample Internal Spacing & Horizontal Thumbnails Strip */}
+            {/* Project Details & Horizontal Thumbnails Strip Below Main Image (Clean Background - No Box) */}
             <div
               className="w-full max-w-3xl mx-auto flex flex-col items-center gap-3 z-40 pb-3"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Project Title & Counter Card with Proper Padding */}
-              <div className="w-full max-w-2xl px-6 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-zinc-950/70 border border-white/10 backdrop-blur-md shadow-xl text-center">
-                <h4 className="text-lg sm:text-xl font-bold text-white font-['Outfit'] tracking-wide">
+              {/* Clean Typography Hierarchy (No Box) */}
+              <div className="flex flex-col items-center text-center gap-1 px-4">
+                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-['Outfit',sans-serif]">
                   {activeItem.title}
                 </h4>
-                <p className="text-xs font-mono text-zinc-400 mt-0.5">
-                  Image {currentIndex + 1} of {total}
+                <p className="text-xs sm:text-sm font-medium text-zinc-400 uppercase tracking-widest font-mono">
+                  {activeItem.tagline}
                 </p>
+                <span className="text-xs font-mono text-zinc-500 mt-0.5">
+                  Image {currentIndex + 1} of {total}
+                </span>
               </div>
 
               {/* Horizontal Thumbnail Jump Strip */}
