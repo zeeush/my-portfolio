@@ -401,126 +401,79 @@ export default function AdminPage() {
     );
   }
 
-  // ================= 1. DARK THEME LOGIN SCREEN (IF UNAUTHENTICATED) =================
+  // ================= 1. CLEAN STANDARD SAAS LOGIN SCREEN (IF UNAUTHENTICATED) =================
   if (!isAuthenticated) {
     return (
-      <main className="relative min-h-screen w-full bg-[#050508] text-white flex items-center justify-center selection:bg-cyan-400 selection:text-black overflow-hidden font-['Outfit',sans-serif] px-4 py-16">
-        {/* Background Ambient Glow Orbs */}
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[180px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[180px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050508]/80 via-transparent to-[#050508]/95 pointer-events-none" />
-        </div>
-
-        {/* Top Navbar */}
-        <Navbar />
-
-        {/* Toast Notification */}
-        {toast && (
-          <div
-            className={`fixed top-24 right-6 z-50 px-6 py-4 rounded-2xl border backdrop-blur-xl flex items-center gap-3.5 shadow-2xl transition-all ${
-              toast.type === 'success'
-                ? 'bg-cyan-950/90 border-cyan-400/50 text-cyan-100 shadow-[0_0_30px_rgba(0,229,255,0.4)]'
-                : 'bg-red-950/90 border-red-500/50 text-red-100 shadow-[0_0_30px_rgba(255,0,0,0.4)]'
-            }`}
-          >
-            <i className={`ph ${toast.type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'} text-2xl text-cyan-400`}></i>
-            <span className="text-sm font-medium">{toast.message}</span>
+      <div className="min-h-screen w-full flex items-center justify-center bg-[#0a0a0a] px-4 font-['Inter',sans-serif]">
+        {/* Centered Modern Glassmorphic Login Card */}
+        <div className="w-full max-w-md p-8 sm:p-10 bg-zinc-950/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl space-y-6">
+          
+          {/* Top Branding & Header */}
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>Admin Portal</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white text-center tracking-tight font-['Outfit',sans-serif]">
+              Welcome Back
+            </h1>
+            <p className="text-sm text-zinc-400 text-center mt-2">
+              Enter your master password to access the dashboard.
+            </p>
           </div>
-        )}
 
-        {/* Perfectly Centered Login Card */}
-        <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center justify-center my-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full bg-[#080a10]/95 border border-cyan-500/30 backdrop-blur-2xl rounded-3xl p-8 shadow-[0_0_60px_rgba(0,240,255,0.15),0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden"
-          >
-            {/* Top Cyan Accent Line */}
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+          {/* Error Alert */}
+          {loginError && (
+            <div className="p-3 rounded-lg bg-red-950/50 border border-red-500/30 text-red-300 text-sm text-center">
+              {loginError}
+            </div>
+          )}
 
-            {/* Glowing Brand Icon / Security Emblem */}
-            <div className="flex flex-col items-center text-center mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-cyan-950/50 border border-cyan-400/60 shadow-[0_0_30px_rgba(0,229,255,0.35)] flex items-center justify-center mb-4 group">
-                <i className="ph ph-shield-check text-3xl text-cyan-400 drop-shadow-[0_0_10px_rgba(0,229,255,0.8)]"></i>
-              </div>
-              <span className="text-[11px] font-mono font-bold tracking-widest text-cyan-400 uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30 mb-2">
-                ADMIN ACCESS PORTAL
-              </span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
-                Dashboard Verification
-              </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-['Inter'] leading-relaxed max-w-xs">
-                Enter your administrator master password to manage portfolio work and upload new assets.
-              </p>
+          {/* Login Form */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-zinc-300 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                autoFocus
+                value={loginPassword}
+                onChange={(e) => {
+                  setLoginPassword(e.target.value);
+                  if (loginError) setLoginError('');
+                }}
+                className="w-full px-4 py-3.5 bg-zinc-900/80 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                placeholder="••••••••"
+              />
             </div>
 
-            {/* Error Banner */}
-            {loginError && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-3.5 rounded-xl bg-red-950/50 border border-red-500/40 text-red-300 text-xs font-mono flex items-center gap-2.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]"
-              >
-                <i className="ph ph-warning-circle text-lg text-red-400 shrink-0"></i>
-                <span>{loginError}</span>
-              </motion.div>
-            )}
+            <button
+              type="submit"
+              disabled={loginLoading}
+              className="w-full py-3.5 mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-lg shadow-[0_0_15px_rgba(8,145,178,0.4)] hover:shadow-[0_0_25px_rgba(8,145,178,0.6)] transition-all duration-300 cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {loginLoading ? (
+                <span>Signing In...</span>
+              ) : (
+                <span>Sign In</span>
+              )}
+            </button>
+          </form>
 
-            {/* Login Form */}
-            <form onSubmit={handleLogin} className="space-y-6">
-              <div className="flex flex-col text-left">
-                <label className="text-xs font-bold font-mono text-cyan-300 uppercase tracking-wider mb-2 flex items-center justify-between">
-                  <span>MASTER PASSWORD</span>
-                  <i className="ph ph-lock-key text-cyan-400 text-sm"></i>
-                </label>
-                <input
-                  type="password"
-                  required
-                  autoFocus
-                  value={loginPassword}
-                  onChange={(e) => {
-                    setLoginPassword(e.target.value);
-                    if (loginError) setLoginError('');
-                  }}
-                  placeholder="Enter administrator password..."
-                  className="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3.5 text-white placeholder-zinc-500 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40 transition-all shadow-inner"
-                />
-              </div>
+          {/* Back to Portfolio Link */}
+          <div className="pt-2 text-center">
+            <Link
+              href="/"
+              className="text-xs text-zinc-400 hover:text-cyan-400 transition-colors uppercase tracking-wider font-mono"
+            >
+              ← Back to Portfolio
+            </Link>
+          </div>
 
-              <button
-                type="submit"
-                disabled={loginLoading}
-                className="relative overflow-hidden w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-zinc-950 font-black text-sm tracking-widest uppercase transition-all shadow-[0_0_25px_rgba(0,240,255,0.45)] hover:shadow-[0_0_35px_rgba(0,240,255,0.7)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-              >
-                {/* Light Sweep Shimmer Effect */}
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
-                {loginLoading ? (
-                  <>
-                    <i className="ph ph-spinner animate-spin text-xl"></i>
-                    <span>Verifying Credentials...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Unlock Dashboard</span>
-                    <i className="ph ph-key text-lg"></i>
-                  </>
-                )}
-              </button>
-            </form>
-
-            <div className="mt-8 pt-6 border-t border-white/10 text-center">
-              <Link
-                href="/"
-                className="text-xs font-mono text-zinc-400 hover:text-cyan-400 transition-colors uppercase tracking-wider inline-flex items-center gap-1.5"
-              >
-                <span>← Return to Public Portfolio</span>
-              </Link>
-            </div>
-          </motion.div>
         </div>
-      </main>
+      </div>
     );
   }
 
