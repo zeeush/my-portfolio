@@ -404,7 +404,7 @@ export default function AdminPage() {
   // ================= 1. DARK THEME LOGIN SCREEN (IF UNAUTHENTICATED) =================
   if (!isAuthenticated) {
     return (
-      <main className="relative min-h-screen w-full bg-[#050508] text-white flex flex-col items-center justify-between selection:bg-cyan-400 selection:text-black overflow-hidden font-['Outfit',sans-serif]">
+      <main className="relative min-h-screen w-full bg-[#050508] text-white flex items-center justify-center selection:bg-cyan-400 selection:text-black overflow-hidden font-['Outfit',sans-serif] px-4 py-16">
         {/* Background Ambient Glow Orbs */}
         <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[180px]" />
@@ -429,13 +429,13 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Centered Login Card */}
-        <div className="relative z-10 w-full max-w-md mx-auto px-4 py-32 my-auto flex flex-col items-center justify-center">
+        {/* Perfectly Centered Login Card */}
+        <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center justify-center my-auto">
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full bg-[#080a10]/95 border border-cyan-500/30 backdrop-blur-2xl rounded-3xl p-8 sm:p-10 shadow-[0_0_60px_rgba(0,240,255,0.15),0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden"
+            className="w-full bg-[#080a10]/95 border border-cyan-500/30 backdrop-blur-2xl rounded-3xl p-8 shadow-[0_0_60px_rgba(0,240,255,0.15),0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden"
           >
             {/* Top Cyan Accent Line */}
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
@@ -550,16 +550,13 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Strict Centered Container (Guaranteed 190px Top Clearance Below Fixed Navbar) */}
-      <div
-        style={{ paddingTop: '190px' }}
-        className="w-full max-w-7xl lg:max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col items-center pb-24 relative z-10"
-      >
+      {/* Clean Main Container with pt-32 Top Clearance */}
+      <div className="w-full max-w-7xl lg:max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col items-center pt-32 pb-24 relative z-10">
         
         {/* Dashboard Header Banner */}
-        <div className="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/10">
-          <div>
-            <div className="flex items-center gap-3.5 mb-3 flex-wrap">
+        <div className="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-8 mb-10 pb-8 border-b border-white/10">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3.5 flex-wrap">
               <span className="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 font-mono text-xs font-semibold tracking-widest uppercase">
                 ADMIN DASHBOARD
               </span>
@@ -571,15 +568,16 @@ export default function AdminPage() {
                 </code>
               </div>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2">
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white">
               Portfolio Upload & Management
             </h1>
-            <p className="text-sm lg:text-base text-zinc-400 max-w-2xl mb-2 leading-relaxed">
+            <p className="text-sm lg:text-base text-zinc-400 max-w-2xl leading-relaxed">
               Upload, edit, persist, and organize your work across all 6 category folders with real-time live preview.
             </p>
           </div>
 
-          <div className="flex flex-row items-center gap-3 sm:gap-4 flex-wrap sm:flex-nowrap">
+          {/* Action buttons in proper flex row with gap-4 */}
+          <div className="flex flex-row items-center gap-4 flex-wrap sm:flex-nowrap shrink-0">
             {/* Refresh Data Button */}
             <motion.div
               whileHover={{ scale: 1.04, y: -2 }}
@@ -630,8 +628,8 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* ================= SECTION 1: TWO-COLUMN FORM & LIVE PREVIEW GRID ================= */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-6">
+        {/* ================= SECTION 1: TWO-COLUMN FORM & LIVE PREVIEW GRID (GAP-10) ================= */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mt-6">
           
           {/* Left Column (7 cols): Upload & Edit Form */}
           <div className="lg:col-span-7 w-full bg-zinc-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 lg:p-10 shadow-[0_0_40px_rgba(0,0,0,0.6)]">
