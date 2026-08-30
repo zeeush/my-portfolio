@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isAuthenticated } from '@/lib/auth';
 
 export interface ProjectRecord {
   id: string;
@@ -46,15 +47,19 @@ function saveProjectsData(data: ProjectRecord[]) {
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-// GET all projects
+// GET all projects (Public read for showcase)
 export async function GET() {
   const projects = getProjectsData();
   return NextResponse.json(projects);
 }
 
-// POST create a new project
+// POST create a new project (Protected)
 export async function POST(request: Request) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: 'Unauthorized. Admin session required.' }, { status: 401 });
+    }
+
     const body = await request.json();
     const { title, companyName, year, category, categoryName, folderSlug, tagline, description, imageUrl, tags } = body;
 
@@ -93,9 +98,13 @@ export async function POST(request: Request) {
   }
 }
 
-// PUT update an existing project
+// PUT update an existing project (Protected)
 export async function PUT(request: Request) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: 'Unauthorized. Admin session required.' }, { status: 401 });
+    }
+
     const body = await request.json();
     const { id, title, companyName, year, category, categoryName, folderSlug, tagline, description, imageUrl, tags } = body;
 
@@ -137,9 +146,13 @@ export async function PUT(request: Request) {
   }
 }
 
-// DELETE a project
+// DELETE a project (Protected)
 export async function DELETE(request: Request) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: 'Unauthorized. Admin session required.' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 

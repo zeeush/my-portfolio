@@ -66,6 +66,14 @@ const CATEGORIES = [
 ];
 
 export default function AdminPage() {
+  // Authentication states
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
+
+  // Dashboard states
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -77,7 +85,7 @@ export default function AdminPage() {
   const [category, setCategory] = useState(CATEGORIES[0].id);
   const [tagline, setTagline] = useState('');
   const [description, setDescription] = useState('');
-  
+
   // Image selection state
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>('');
@@ -106,6 +114,8 @@ export default function AdminPage() {
       if (res.ok) {
         const data = await res.json();
         setProjects(data);
+      } else if (res.status === 401) {
+        setIsAuthenticated(false);
       }
     } catch (err) {
       console.error('Error fetching projects:', err);
@@ -115,26 +125,79 @@ export default function AdminPage() {
     }
   }, []);
 
+  // Initial Auth Check
   useEffect(() => {
     let ignore = false;
-    async function load() {
+    async function checkAuth() {
       try {
-        const res = await fetch('/api/projects');
-        if (res.ok && !ignore) {
+        const res = await fetch('/api/auth/check');
+        if (res.ok) {
           const data = await res.json();
-          setProjects(data);
+          if (!ignore) {
+            setIsAuthenticated(!!data.authenticated);
+            if (data.authenticated) {
+              fetchProjects();
+            }
+          }
         }
       } catch (err) {
-        console.error('Error fetching projects:', err);
+        console.error('Auth verification error:', err);
       } finally {
-        if (!ignore) setLoading(false);
+        if (!ignore) setAuthChecking(false);
       }
     }
-    load();
+    checkAuth();
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [fetchProjects]);
+
+  // Handle Login Submit
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!loginPassword.trim()) {
+      setLoginError('Please enter your administrator password');
+      return;
+    }
+
+    try {
+      setLoginLoading(true);
+      setLoginError('');
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: loginPassword }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+        setLoginPassword('');
+        showToast('Administrator access granted', 'success');
+        fetchProjects();
+      } else {
+        setLoginError(data.error || 'Invalid administrator password');
+        showToast(data.error || 'Access Denied', 'error');
+      }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Connection failed';
+      setLoginError(msg);
+      showToast(msg, 'error');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
+  // Handle Logout
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      setIsAuthenticated(false);
+      showToast('Logged out securely', 'success');
+    } catch (err: unknown) {
+      console.error('Logout error:', err);
+    }
+  };
 
   // Handle File Selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -223,6 +286,10 @@ export default function AdminPage() {
 
         const uploadData = await uploadRes.json();
         if (!uploadRes.ok || !uploadData.success) {
+          if (uploadRes.status === 401) {
+            setIsAuthenticated(false);
+            throw new Error('Session expired. Please log in again.');
+          }
           throw new Error(uploadData.error || 'Image upload failed');
         }
 
@@ -255,6 +322,10 @@ export default function AdminPage() {
 
       const resData = await res.json();
       if (!res.ok || !resData.success) {
+        if (res.status === 401) {
+          setIsAuthenticated(false);
+          throw new Error('Session expired. Please log in again.');
+        }
         throw new Error(resData.error || 'Failed to save project');
       }
 
@@ -294,6 +365,9 @@ export default function AdminPage() {
           resetForm();
         }
         fetchProjects();
+      } else if (res.status === 401) {
+        setIsAuthenticated(false);
+        showToast('Session expired. Please log in again.', 'error');
       } else {
         throw new Error(data.error || 'Failed to delete project');
       }
@@ -315,8 +389,144 @@ export default function AdminPage() {
 
   const selectedCategoryObj = CATEGORIES.find((c) => c.id === category) || CATEGORIES[0];
 
+  // Loading State while verifying session
+  if (authChecking) {
+    return (
+      <main className="relative min-h-screen w-full bg-[#050508] text-white flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin shadow-[0_0_30px_rgba(0,229,255,0.4)]" />
+          <span className="font-mono text-sm uppercase tracking-widest text-cyan-400">Verifying Security Session...</span>
+        </div>
+      </main>
+    );
+  }
+
+  // ================= 1. DARK THEME LOGIN SCREEN (IF UNAUTHENTICATED) =================
+  if (!isAuthenticated) {
+    return (
+      <main className="relative min-h-screen w-full bg-[#050508] text-white flex flex-col items-center justify-between selection:bg-cyan-400 selection:text-black overflow-hidden font-['Outfit',sans-serif]">
+        {/* Background Ambient Glow Orbs */}
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[180px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[180px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050508]/80 via-transparent to-[#050508]/95 pointer-events-none" />
+        </div>
+
+        {/* Top Navbar */}
+        <Navbar />
+
+        {/* Toast Notification */}
+        {toast && (
+          <div
+            className={`fixed top-24 right-6 z-50 px-6 py-4 rounded-2xl border backdrop-blur-xl flex items-center gap-3.5 shadow-2xl transition-all ${
+              toast.type === 'success'
+                ? 'bg-cyan-950/90 border-cyan-400/50 text-cyan-100 shadow-[0_0_30px_rgba(0,229,255,0.4)]'
+                : 'bg-red-950/90 border-red-500/50 text-red-100 shadow-[0_0_30px_rgba(255,0,0,0.4)]'
+            }`}
+          >
+            <i className={`ph ${toast.type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'} text-2xl text-cyan-400`}></i>
+            <span className="text-sm font-medium">{toast.message}</span>
+          </div>
+        )}
+
+        {/* Centered Login Card */}
+        <div className="relative z-10 w-full max-w-md mx-auto px-4 py-32 my-auto flex flex-col items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full bg-[#080a10]/95 border border-cyan-500/30 backdrop-blur-2xl rounded-3xl p-8 sm:p-10 shadow-[0_0_60px_rgba(0,240,255,0.15),0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden"
+          >
+            {/* Top Cyan Accent Line */}
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+
+            {/* Glowing Brand Icon / Security Emblem */}
+            <div className="flex flex-col items-center text-center mb-8">
+              <div className="w-16 h-16 rounded-2xl bg-cyan-950/50 border border-cyan-400/60 shadow-[0_0_30px_rgba(0,229,255,0.35)] flex items-center justify-center mb-4 group">
+                <i className="ph ph-shield-check text-3xl text-cyan-400 drop-shadow-[0_0_10px_rgba(0,229,255,0.8)]"></i>
+              </div>
+              <span className="text-[11px] font-mono font-bold tracking-widest text-cyan-400 uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30 mb-2">
+                ADMIN ACCESS PORTAL
+              </span>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
+                Dashboard Verification
+              </h1>
+              <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-['Inter'] leading-relaxed max-w-xs">
+                Enter your administrator master password to manage portfolio work and upload new assets.
+              </p>
+            </div>
+
+            {/* Error Banner */}
+            {loginError && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-3.5 rounded-xl bg-red-950/50 border border-red-500/40 text-red-300 text-xs font-mono flex items-center gap-2.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]"
+              >
+                <i className="ph ph-warning-circle text-lg text-red-400 shrink-0"></i>
+                <span>{loginError}</span>
+              </motion.div>
+            )}
+
+            {/* Login Form */}
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="flex flex-col text-left">
+                <label className="text-xs font-bold font-mono text-cyan-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+                  <span>MASTER PASSWORD</span>
+                  <i className="ph ph-lock-key text-cyan-400 text-sm"></i>
+                </label>
+                <input
+                  type="password"
+                  required
+                  autoFocus
+                  value={loginPassword}
+                  onChange={(e) => {
+                    setLoginPassword(e.target.value);
+                    if (loginError) setLoginError('');
+                  }}
+                  placeholder="Enter administrator password..."
+                  className="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3.5 text-white placeholder-zinc-500 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40 transition-all shadow-inner"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loginLoading}
+                className="relative overflow-hidden w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-zinc-950 font-black text-sm tracking-widest uppercase transition-all shadow-[0_0_25px_rgba(0,240,255,0.45)] hover:shadow-[0_0_35px_rgba(0,240,255,0.7)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                {/* Light Sweep Shimmer Effect */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
+                {loginLoading ? (
+                  <>
+                    <i className="ph ph-spinner animate-spin text-xl"></i>
+                    <span>Verifying Credentials...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Unlock Dashboard</span>
+                    <i className="ph ph-key text-lg"></i>
+                  </>
+                )}
+              </button>
+            </form>
+
+            <div className="mt-8 pt-6 border-t border-white/10 text-center">
+              <Link
+                href="/"
+                className="text-xs font-mono text-zinc-400 hover:text-cyan-400 transition-colors uppercase tracking-wider inline-flex items-center gap-1.5"
+              >
+                <span>← Return to Public Portfolio</span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </main>
+    );
+  }
+
+  // ================= 2. AUTHENTICATED ADMIN DASHBOARD =================
   return (
-    <main className="relative min-h-screen w-full bg-[#050508] text-white flex flex-col items-center justify-between selection:bg-cyan-400 selection:text-black">
+    <main className="relative min-h-screen w-full bg-[#050508] text-white flex flex-col items-center justify-between selection:bg-cyan-400 selection:text-black font-['Outfit',sans-serif]">
       {/* Background Ambient Glow Orbs */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 -left-32 w-[700px] h-[700px] bg-cyan-500/10 rounded-full blur-[180px]" />
@@ -350,18 +560,18 @@ export default function AdminPage() {
         <div className="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/10">
           <div>
             <div className="flex items-center gap-3.5 mb-3 flex-wrap">
-              <span className="px-4 py-2.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 font-mono text-xs font-semibold tracking-widest uppercase">
+              <span className="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 font-mono text-xs font-semibold tracking-widest uppercase">
                 ADMIN DASHBOARD
               </span>
-              <div className="inline-flex items-center gap-3 h-14 px-7 rounded-xl bg-cyan-950/30 border border-cyan-400/40 shadow-[0_0_25px_rgba(0,229,255,0.15)] backdrop-blur-md">
-                <i className="ph ph-folder-notch-open text-cyan-400 text-xl"></i>
-                <span className="text-sm font-medium text-zinc-300 font-mono">Target Folder:</span>
-                <code className="text-cyan-300 font-semibold font-mono text-base tracking-wide">
+              <div className="inline-flex items-center gap-3 h-11 px-5 rounded-xl bg-cyan-950/30 border border-cyan-400/40 shadow-[0_0_25px_rgba(0,229,255,0.15)] backdrop-blur-md">
+                <i className="ph ph-folder-notch-open text-cyan-400 text-lg"></i>
+                <span className="text-xs font-medium text-zinc-300 font-mono">Target Folder:</span>
+                <code className="text-cyan-300 font-semibold font-mono text-sm tracking-wide">
                   /public/work/{selectedCategoryObj.folderSlug}/
                 </code>
               </div>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2 font-['Outfit']">
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2">
               Portfolio Upload & Management
             </h1>
             <p className="text-sm lg:text-base text-zinc-400 max-w-2xl mb-2 leading-relaxed">
@@ -369,39 +579,53 @@ export default function AdminPage() {
             </p>
           </div>
 
-          <div className="flex flex-row items-center gap-3.5 sm:gap-4 flex-shrink-0">
-            {/* Refresh Data Button (Cyan Electric Hyper-Glow Gradient Style) */}
+          <div className="flex flex-row items-center gap-3 sm:gap-4 flex-wrap sm:flex-nowrap">
+            {/* Refresh Data Button */}
             <motion.div
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              className="flex-none shrink-0 flex justify-center"
+              className="flex-none shrink-0"
             >
               <button
                 onClick={fetchProjects}
-                className="relative overflow-hidden inline-flex items-center justify-center text-center px-7 py-3.5 min-h-[44px] rounded-lg bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 text-zinc-950 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wide uppercase shadow-[0_0_20px_rgba(0,242,254,0.65)] hover:shadow-[0_0_32px_rgba(0,242,254,0.95)] transition-all duration-300 gap-2.5 cursor-pointer group/btn whitespace-nowrap flex-none shrink-0"
+                className="relative overflow-hidden inline-flex items-center justify-center text-center px-6 py-3 min-h-[44px] rounded-lg bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 text-zinc-950 font-extrabold text-sm tracking-wide uppercase shadow-[0_0_20px_rgba(0,242,254,0.65)] hover:shadow-[0_0_32px_rgba(0,242,254,0.95)] transition-all duration-300 gap-2 cursor-pointer group/btn whitespace-nowrap"
               >
-                {/* Light Sweep Shimmer Effect */}
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] pointer-events-none" />
-                <span className="tracking-wide uppercase whitespace-nowrap leading-none">Refresh Data</span>
-                <i className="ph ph-arrows-clockwise text-base sm:text-lg font-bold text-zinc-950 group-hover/btn:rotate-180 transition-transform duration-500 flex-shrink-0 leading-none" />
+                <span className="tracking-wide uppercase whitespace-nowrap leading-none">Refresh</span>
+                <i className="ph ph-arrows-clockwise text-base font-bold text-zinc-950 group-hover/btn:rotate-180 transition-transform duration-500" />
               </button>
             </motion.div>
 
-            {/* View Main Showcase Button (Deep Obsidian Glass Card Style) */}
+            {/* View Main Showcase Button */}
             <motion.div
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              className="flex-none shrink-0 flex justify-center"
+              className="flex-none shrink-0"
             >
               <Link
                 href="/#work"
-                className="relative overflow-hidden inline-flex items-center justify-center text-center px-7 py-3.5 min-h-[44px] rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-100 hover:bg-purple-600/50 hover:border-purple-400 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wide uppercase shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all duration-300 gap-2.5 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap flex-none shrink-0"
+                className="relative overflow-hidden inline-flex items-center justify-center text-center px-6 py-3 min-h-[44px] rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-100 hover:bg-purple-600/50 hover:border-purple-400 font-extrabold text-sm tracking-wide uppercase shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all duration-300 gap-2 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap"
               >
-                <span className="tracking-wide uppercase group-hover/btn:text-white transition-colors whitespace-nowrap leading-none">View Main Showcase</span>
-                <i className="ph ph-arrow-up-right text-base sm:text-lg font-bold text-purple-200 group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform flex-shrink-0 leading-none" />
+                <span className="tracking-wide uppercase group-hover/btn:text-white transition-colors whitespace-nowrap leading-none">Showcase</span>
+                <i className="ph ph-arrow-up-right text-base font-bold text-purple-200 group-hover/btn:text-white transition-transform" />
               </Link>
+            </motion.div>
+
+            {/* Logout Button */}
+            <motion.div
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              className="flex-none shrink-0"
+            >
+              <button
+                onClick={handleLogout}
+                className="relative overflow-hidden inline-flex items-center justify-center text-center px-6 py-3 min-h-[44px] rounded-lg bg-zinc-900/90 border border-red-500/40 text-red-300 hover:bg-red-950/60 hover:border-red-400 hover:text-red-200 font-extrabold text-sm tracking-wide uppercase shadow-[0_0_15px_rgba(239,68,68,0.25)] transition-all duration-300 gap-2 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap"
+              >
+                <span className="tracking-wide uppercase whitespace-nowrap leading-none">Sign Out</span>
+                <i className="ph ph-sign-out text-base font-bold group-hover/btn:translate-x-0.5 transition-transform" />
+              </button>
             </motion.div>
           </div>
         </div>

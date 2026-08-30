@@ -1,9 +1,14 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isAuthenticated } from '@/lib/auth';
 
 export async function POST(request: Request) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: 'Unauthorized. Admin session required.' }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     const folderSlug = (formData.get('folderSlug') as string) || 'general';
