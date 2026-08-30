@@ -1,6 +1,5 @@
 import ShowcaseCarousel from '@/components/ShowcaseCarousel';
 import Navbar from '@/components/Navbar';
-import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 
@@ -60,27 +59,14 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
       {/* Main Center Stack Area (Vertical Centering with pt-28) */}
       <div className="relative z-10 w-full min-h-screen pt-28 pb-16 flex flex-col justify-center items-center">
         
-        {/* Middle Tier: Active Folder Title & Clean Back Trigger */}
-        <div className="w-full max-w-5xl mx-auto px-6 mb-8 flex flex-col items-center justify-center text-center gap-3 relative">
-          
-          {/* Back Trigger */}
-          <Link
-            href="/#work"
-            className="inline-flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-widest drop-shadow-[0_0_10px_rgba(0,229,255,0.85)] hover:drop-shadow-[0_0_18px_rgba(0,229,255,1)] hover:text-white transition-all group cursor-pointer sm:absolute sm:left-6 sm:top-1/2 sm:-translate-y-1/2"
-          >
-            <i className="ph ph-arrow-left text-base group-hover:-translate-x-1 transition-transform"></i>
-            <span>Back to Work</span>
-          </Link>
-
-          {/* Center Category Title & Heading */}
-          <div className="flex flex-col items-center justify-center text-center w-full mx-auto">
-            <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block text-center drop-shadow-[0_0_6px_rgba(0,229,255,0.6)]">
-              SHOWCASE
-            </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white font-['Outfit'] tracking-wide mt-1 text-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-              {title}
-            </h2>
-          </div>
+        {/* Middle Tier: Active Folder Title & Category Header */}
+        <div className="w-full max-w-5xl mx-auto px-6 mb-8 flex flex-col items-center justify-center text-center gap-2 relative">
+          <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block text-center drop-shadow-[0_0_6px_rgba(0,229,255,0.6)]">
+            PORTFOLIO SHOWCASE
+          </span>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white font-['Outfit'] tracking-wide text-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+            {title}
+          </h2>
         </div>
 
         {/* Center Tier: Work Showcase Container (Squarely in Center) */}
