@@ -50,14 +50,9 @@ export default function ContactSection() {
           LET&apos;S FORGE AN ICONIC BRAND IDENTITY THAT COMMANDS ATTENTION.
         </p>
 
-        {/* Line 4: Body Description - Lightweight, Muted Gray, Clear Spacing Gap (No Container) */}
-        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-400 font-normal text-sm sm:text-base leading-relaxed max-w-xl mx-auto mt-4 sm:mt-5 px-4 sm:px-0">
-          Whether you need an iconic logo, a high-converting banner set, or a complete brand ecosystem—let&apos;s build something unforgettable together.
-        </p>
-
         {/* High-Contrast Floating CTA Button Stack */}
         <motion.div 
-          className="mt-8 mb-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto mx-auto relative z-20"
+          className="my-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto mx-auto relative z-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -103,6 +98,11 @@ export default function ContactSection() {
             </Link>
           </motion.div>
         </motion.div>
+
+        {/* Line 4: Body Description (Plus Jakarta Sans) */}
+        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-400 font-normal text-sm sm:text-base leading-relaxed max-w-xl mx-auto mt-2 px-2 sm:px-0">
+          Whether you need an iconic logo, a high-converting banner set, or a complete brand ecosystem—let&apos;s build something unforgettable together.
+        </p>
 
       </div>
     </motion.div>

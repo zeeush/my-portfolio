@@ -136,7 +136,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 select-none relative">
-      
+
       {/* ================= 5. ENLARGED STICKY BACK NAVIGATION BUTTON ================= */}
       <button
         onClick={handleBackNavigation}
@@ -161,7 +161,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        
+
         {/* Ambient Neon Stage Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-gradient-to-r from-cyan-500/20 via-purple-600/15 to-pink-500/20 blur-3xl -z-10 pointer-events-none"></div>
 
@@ -251,11 +251,10 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                     setCurrentIndex(index);
                   }
                 }}
-                className={`group absolute w-[740px] max-w-[85vw] aspect-[16/10] rounded-xl overflow-hidden cursor-pointer transition-shadow duration-300 ${
-                  isCenter
+                className={`group absolute w-[740px] max-w-[85vw] aspect-[16/10] rounded-xl overflow-hidden cursor-pointer transition-shadow duration-300 ${isCenter
                     ? 'border-2 border-cyan-400/80 shadow-[0_0_40px_rgba(0,240,255,0.25),0_20px_50px_rgba(0,0,0,0.9)] bg-black'
                     : 'border border-white/10 bg-black/90 shadow-[0_15px_35px_rgba(0,0,0,0.7)]'
-                }`}
+                  }`}
               >
                 {/* Thumbnail Image with Tactile 1.03x Scale on Hover */}
                 <div className="relative w-full h-full overflow-hidden">
@@ -359,11 +358,10 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                i === currentIndex
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex
                   ? 'w-8 bg-cyan-400 shadow-[0_0_12px_rgba(0,229,255,0.9)]'
                   : 'w-2 bg-white/20 hover:bg-white/50'
-              }`}
+                }`}
               aria-label={`Go to image ${i + 1}`}
             />
           ))}
@@ -474,11 +472,10 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                   <button
                     key={it.id || idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`relative w-16 h-11 sm:w-20 sm:h-14 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer transition-all duration-200 ${
-                      idx === currentIndex
+                    className={`relative w-16 h-11 sm:w-20 sm:h-14 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer transition-all duration-200 ${idx === currentIndex
                         ? 'border-2 border-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.7)] opacity-100 scale-105'
                         : 'border border-white/20 opacity-50 hover:opacity-90 hover:scale-100'
-                    }`}
+                      }`}
                     aria-label={`Jump to image ${idx + 1}`}
                   >
                     <img src={it.imageUrl} alt={it.title} className="w-full h-full object-cover" />
