@@ -1,0 +1,146 @@
+[
+  {
+    "id": "sitm-institute",
+    "title": "SITM Academic Crest",
+    "companyName": "SITM Institute",
+    "year": "2025",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "ACADEMIC IDENTITY & INSTITUTIONAL BRANDING #InstitutionalIdentity #AcademicBranding #CrestDesign",
+    "description": "An extensive end-to-end identity system designed for a technical educational institute, fusing industrial engineering iconography with global connectivity motifs. Built with structured royal navy and periwinkle tones.",
+    "tags": [
+      "#InstitutionalIdentity",
+      "#AcademicBranding",
+      "#CrestDesign"
+    ],
+    "imageUrl": "/images/showcase/sitm-institute-mockup.png",
+    "createdAt": "2026-08-22T12:00:00.000Z"
+  },
+  {
+    "id": "bit-n-bite",
+    "title": "Bit n Bite Brand Suite",
+    "companyName": "Bit n Bite QSR",
+    "year": "2024",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "QUICK-SERVICE RESTAURANT & PACKAGING IDENTITY #QSRBranding #PackagingDesign #RestaurantIdentity",
+    "description": "A high-energy visual identity system crafted for a dynamic fast-food brand, combining expressive typography with playful mascot geometry.",
+    "tags": [
+      "#QSRBranding",
+      "#PackagingDesign",
+      "#RestaurantIdentity"
+    ],
+    "imageUrl": "/images/showcase/bitnbite-packaging-mockup.png",
+    "createdAt": "2026-08-22T11:00:00.000Z"
+  },
+  {
+    "id": "heritage-hospitals",
+    "title": "Heritage Hospitals Identity",
+    "companyName": "Heritage Hospitals",
+    "year": "2025",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "HEALTHCARE BRANDING & VISUAL IDENTITY #HealthcareBranding #MedicalIdentity #CorporateTrust",
+    "description": "A comprehensive brand refinement project for a premier healthcare institution, integrating compassionate medical iconography with corporate trust.",
+    "tags": [
+      "#HealthcareBranding",
+      "#MedicalIdentity",
+      "#CorporateTrust"
+    ],
+    "imageUrl": "/images/showcase/heritage-hospitals-mockup.png",
+    "createdAt": "2026-08-22T10:00:00.000Z"
+  },
+  {
+    "id": "cybertech-launch",
+    "title": "CyberTech Launch Poster",
+    "companyName": "CyberTech Global",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "PERFORMANCE AD CREATIVE #PerformanceAd #CyberpunkPoster #HighCTR",
+    "description": "High-converting futuristic advertising poster featuring neon typography and holographic product UI. Crafted to drive record click-through velocity across paid acquisition funnels.",
+    "tags": [
+      "#PerformanceAd",
+      "#CyberpunkPoster",
+      "#HighCTR"
+    ],
+    "imageUrl": "/portfolio-assets/banners/banner_mockup_1.jpg",
+    "createdAt": "2026-08-22T09:00:00.000Z"
+  },
+  {
+    "id": "newday-editorial",
+    "title": "New Day Magazine Edition",
+    "companyName": "New Day Media",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "EDITORIAL MASTHEAD & PUBLICATION DESIGN #EditorialDesign #PublicationIdentity #PrintDesign",
+    "description": "A flagship editorial identity created for a prominent monthly publication, integrating cultural symbolism with bold Devanagari typography.",
+    "tags": [
+      "#EditorialDesign",
+      "#PublicationIdentity",
+      "#PrintDesign"
+    ],
+    "imageUrl": "/images/showcase/newday-magazine-mockup.png",
+    "createdAt": "2026-08-22T08:00:00.000Z"
+  },
+  {
+    "id": "esports-ctr-thumbnail",
+    "title": "Apex Champions Esports Thumbnail",
+    "companyName": "Apex Media",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "CTR-OPTIMIZED GAMING GRAPHIC #YouTubeThumbnails #Esports #CTRBonus",
+    "description": "High-impact AI augmented thumbnail designed with custom lighting, vibrant typography, and focal points engineered for peak click-through rate.",
+    "tags": [
+      "#YouTubeThumbnails",
+      "#Esports",
+      "#CTRBonus"
+    ],
+    "imageUrl": "/assets/hero_bg_new.png",
+    "createdAt": "2026-08-22T07:00:00.000Z"
+  },
+  {
+    "id": "viral-carousel-campaign",
+    "title": "Neon Nights Brand Campaign",
+    "companyName": "Aura Lifestyle",
+    "year": "2025",
+    "category": "instagram",
+    "categoryName": "Instagram Brand Campaigns",
+    "folderSlug": "instagram",
+    "tagline": "VIRAL SOCIAL MEDIA KIT & CAROUSEL #InstagramCampaign #SocialKit #ViralDesign",
+    "description": "Multi-slide Instagram carousel series designed for maximum engagement, brand aesthetic uniformity, and story conversion.",
+    "tags": [
+      "#InstagramCampaign",
+      "#SocialKit",
+      "#ViralDesign"
+    ],
+    "imageUrl": "/assets/story_designer.png",
+    "createdAt": "2026-08-22T06:00:00.000Z"
+  },
+  {
+    "id": "stream-pack-3d",
+    "title": "Cyber Stream Overlay & 3D Assets",
+    "companyName": "HyperStream Studio",
+    "year": "2026",
+    "category": "creator",
+    "categoryName": "Content Creation & Media",
+    "folderSlug": "creator",
+    "tagline": "IMMERSIVE 3D & LIVE STREAMING ASSETS #StreamingAssets #3DGraphics #ContentCreation",
+    "description": "Complete broadcast production package including animated 3D alerts, stingers, offline screens, and interactive stream widgets.",
+    "tags": [
+      "#StreamingAssets",
+      "#3DGraphics",
+      "#ContentCreation"
+    ],
+    "imageUrl": "/assets/hero_landscape_z.jpg",
+    "createdAt": "2026-08-22T05:00:00.000Z"
+  }
+]

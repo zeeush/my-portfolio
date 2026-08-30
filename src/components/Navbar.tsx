@@ -11,6 +11,7 @@ export default function Navbar() {
     { name: 'About', href: '/#about' },
     { name: 'Work', href: '/#work' },
     { name: 'Process', href: '/#process' },
+    { name: 'Admin', href: '/admin' },
     { name: 'Contact', href: '/#contact' },
   ];
 
@@ -52,7 +53,7 @@ export default function Navbar() {
             href="/#contact"
             className="hidden sm:inline-flex items-center gap-2.5 text-cyan-400 font-mono text-sm md:text-base font-bold tracking-widest uppercase drop-shadow-[0_0_12px_rgba(0,229,255,0.85)] hover:drop-shadow-[0_0_22px_rgba(0,229,255,1)] hover:text-cyan-300 transition-all duration-300 group cursor-pointer"
           >
-            <span>Let's Chat</span>
+            <span>Let&apos;s Chat</span>
             <i className="ph ph-chat-teardrop-text text-xl md:text-2xl text-cyan-400 drop-shadow-[0_0_12px_rgba(0,229,255,0.85)] group-hover:scale-115 transition-transform"></i>
           </Link>
 
@@ -86,7 +87,7 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
             className="mt-2 inline-flex items-center justify-center gap-2.5 text-cyan-400 font-mono text-sm font-bold uppercase tracking-widest drop-shadow-[0_0_12px_rgba(0,229,255,0.85)] hover:text-cyan-300 py-2 transition-all w-full text-center"
           >
-            <span>Let's Chat</span>
+            <span>Let&apos;s Chat</span>
             <i className="ph ph-chat-teardrop-text text-xl text-cyan-400"></i>
           </Link>
         </div>

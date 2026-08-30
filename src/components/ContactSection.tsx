@@ -8,11 +8,11 @@ const WHATSAPP_DM_URL = "https://wa.me/918299114703?text=Hello%20Zeeshan!%20I%20
 export default function ContactSection() {
   return (
     <motion.div
-      className="relative z-10 max-w-2xl w-full mx-auto px-4 py-12 sm:py-16 text-center flex flex-col items-center justify-center translate-y-[141px]"
-      initial={{ opacity: 0, y: 120 }}
+      className="relative z-10 max-w-2xl w-full mx-auto px-4 py-8 sm:py-12 text-center flex flex-col items-center justify-center"
+      initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Scaled-Up 3D Brand Core Floating PNG Emblem Centered with Background Core */}
       <div className="flex justify-center items-center mx-auto mb-3 mt-0 relative">
@@ -52,7 +52,7 @@ export default function ContactSection() {
 
         {/* Transparent Floating CTA Button Stack */}
         <motion.div 
-          className="my-4 flex flex-row items-center justify-center gap-3 sm:gap-4 w-auto mx-auto bg-transparent border-0 p-0 relative z-20"
+          className="my-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mx-auto bg-transparent border-0 p-0 relative z-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -62,11 +62,11 @@ export default function ContactSection() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            className="flex-none shrink-0 flex justify-center"
+            className="w-full sm:w-auto flex justify-center"
           >
             <Link
               href="/start-project"
-              className="relative overflow-hidden inline-flex items-center justify-center text-center min-w-[190px] sm:min-w-[210px] min-h-[48px] px-9 sm:px-10 py-3 rounded-lg bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 text-zinc-950 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_20px_rgba(0,242,254,0.65)] hover:shadow-[0_0_35px_rgba(0,242,254,0.95)] transition-all duration-300 gap-2 cursor-pointer group/btn whitespace-nowrap flex-none shrink-0"
+              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[200px] sm:min-w-[210px] min-h-[48px] px-8 sm:px-10 py-3 rounded-lg bg-gradient-to-r from-cyan-400 via-cyan-300 to-emerald-400 text-zinc-950 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_20px_rgba(0,242,254,0.65)] hover:shadow-[0_0_35px_rgba(0,242,254,0.95)] transition-all duration-300 gap-2 cursor-pointer group/btn whitespace-nowrap"
             >
               {/* Light Sweep Shimmer Effect */}
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] pointer-events-none" />
@@ -84,13 +84,13 @@ export default function ContactSection() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            className="flex-none shrink-0 flex justify-center"
+            className="w-full sm:w-auto flex justify-center"
           >
             <Link
               href={WHATSAPP_DM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative overflow-hidden inline-flex items-center justify-center text-center min-w-[190px] sm:min-w-[210px] min-h-[48px] px-9 sm:px-10 py-3 rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-100 hover:bg-purple-600/50 hover:border-purple-400 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_18px_rgba(168,85,247,0.35)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all duration-300 gap-2 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap flex-none shrink-0"
+              className="relative overflow-hidden inline-flex items-center justify-center text-center w-full sm:w-auto min-w-[200px] sm:min-w-[210px] min-h-[48px] px-8 sm:px-10 py-3 rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-100 hover:bg-purple-600/50 hover:border-purple-400 font-['Outfit',sans-serif] font-extrabold text-sm tracking-wider uppercase shadow-[0_0_18px_rgba(168,85,247,0.35)] hover:shadow-[0_0_35px_rgba(192,132,252,0.7)] transition-all duration-300 gap-2 cursor-pointer group/btn backdrop-blur-md whitespace-nowrap"
             >
               <span className="tracking-wider uppercase group-hover/btn:text-white transition-colors whitespace-nowrap leading-none">Direct Message</span>
               <svg 

@@ -265,43 +265,39 @@ export default function Home() {
           <div className="timeline">
             <div className="timeline-line"></div>
 
-            <div className="timeline-step group p-4 sm:p-5 rounded-2xl bg-zinc-900/40 border border-white/10 hover:bg-zinc-900/60 hover:border-cyan-500/30 transition-all duration-300">
+            <div className="timeline-step group">
               <div className="step-icon">
                 <i className="ph ph-lightbulb"></i>
               </div>
-              <h3 className="step-num">
-                01 <span className="step-title">Strategic Discovery & AI Ideation</span>
-              </h3>
+              <div className="step-badge">01</div>
+              <h3 className="step-title">Strategic Discovery & AI ideation</h3>
               <p>Leveraging LLMs and generative AI (Leonardo.ai, Claude) alongside deep brand research to explore broad creative directions and rapid concept benchmarking.</p>
             </div>
 
-            <div className="timeline-step group p-4 sm:p-5 rounded-2xl bg-zinc-900/40 border border-white/10 hover:bg-zinc-900/60 hover:border-cyan-500/30 transition-all duration-300">
+            <div className="timeline-step group">
               <div className="step-icon">
                 <i className="ph ph-pencil-simple"></i>
               </div>
-              <h3 className="step-num">
-                02 <span className="step-title">Foundation & Visual Architecture</span>
-              </h3>
+              <div className="step-badge">02</div>
+              <h3 className="step-title">Foundation & Visual Architecture</h3>
               <p>Distilling ideas with core design principles, structural composition, and typography hierarchy to establish a solid, memorable visual identity.</p>
             </div>
 
-            <div className="timeline-step group p-4 sm:p-5 rounded-2xl bg-zinc-900/40 border border-white/10 hover:bg-zinc-900/60 hover:border-cyan-500/30 transition-all duration-300">
+            <div className="timeline-step group">
               <div className="step-icon">
                 <i className="ph ph-bezier-curve"></i>
               </div>
-              <h3 className="step-num">
-                03 <span className="step-title">Precision Vectoring & Editing</span>
-              </h3>
+              <div className="step-badge">03</div>
+              <h3 className="step-title">Precision Vectoring & Editing</h3>
               <p>Translating concepts into pixel-perfect vectors and multimedia assets using CorelDRAW, Premiere Pro, and Canva for seamless scalability across print and digital media.</p>
             </div>
 
-            <div className="timeline-step group p-4 sm:p-5 rounded-2xl bg-zinc-900/40 border border-white/10 hover:bg-zinc-900/60 hover:border-cyan-500/30 transition-all duration-300">
+            <div className="timeline-step group">
               <div className="step-icon">
                 <i className="ph ph-cube"></i>
               </div>
-              <h3 className="step-num">
-                04 <span className="step-title">Ecosystem Deployment & Mockups</span>
-              </h3>
+              <div className="step-badge">04</div>
+              <h3 className="step-title">Ecosystem Deployment & Mockups</h3>
               <p>Bringing brand assets to life with photorealistic 3D mockups, campaign-ready formats, and real-world collateral built for high conversion and market impact.</p>
             </div>
           </div>

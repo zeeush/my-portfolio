@@ -12,17 +12,58 @@ interface ShowcaseCarouselProps {
 export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [dynamicItems, setDynamicItems] = useState<ProjectItem[]>([]);
 
-  const items: ProjectItem[] = projectsData[category] || projectsData.logo;
+  useEffect(() => {
+    async function loadDynamicProjects() {
+      try {
+        const res = await fetch('/api/projects');
+        if (res.ok) {
+          const allProjects = await res.json();
+          interface RawProject {
+            id: string;
+            category?: string;
+            folderSlug?: string;
+            year?: string;
+            categoryName?: string;
+            tagline?: string;
+            title: string;
+            description: string;
+            tags?: string[];
+            imageUrl: string;
+          }
+          const categoryProjects = allProjects.filter((p: RawProject) => p.category === category || p.folderSlug === category);
+          if (categoryProjects.length > 0) {
+            const mapped: ProjectItem[] = categoryProjects
+              .sort((a: RawProject, b: RawProject) => parseInt(b.year || '0') - parseInt(a.year || '0'))
+              .map((p: RawProject) => ({
+                id: p.id,
+                tagline: p.tagline || `${p.year || '2025'} // ${(p.categoryName || category).toUpperCase()}`,
+                title: p.title,
+                description: p.description,
+                tags: p.tags && p.tags.length > 0 ? p.tags : ['#Portfolio', '#Design'],
+                imageUrl: p.imageUrl,
+              }));
+            setDynamicItems(mapped);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to load dynamic projects:', e);
+      }
+    }
+    loadDynamicProjects();
+  }, [category]);
+
+  const items: ProjectItem[] = dynamicItems.length > 0 ? dynamicItems : (projectsData[category] || projectsData.logo || []);
   const total = items.length;
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % total);
-  }, [total]);
+    setCurrentIndex((prev) => (prev + 1) % (items.length || 1));
+  }, [items.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
+    setCurrentIndex((prev) => (prev - 1 + (items.length || 1)) % (items.length || 1));
+  }, [items.length]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -38,7 +79,14 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, nextSlide, prevSlide]);
 
-  const activeItem = items[currentIndex];
+  const activeItem = items[currentIndex] || items[0] || {
+    id: 'placeholder',
+    tagline: 'PORTFOLIO // SHOWCASE',
+    title: 'Showcase Project',
+    description: 'No projects available.',
+    tags: ['#Portfolio'],
+    imageUrl: '/assets/hero_cave.jpg',
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 select-none">

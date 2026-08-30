@@ -19,7 +19,7 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
   const category = categoryAliases[rawCategory] || rawCategory;
 
   // Uniform Primary Cave Backdrop across all showcase views
-  const bgImage = 'assets/hero_cave.jpg';
+  const bgImage = '/assets/hero_cave.jpg';
 
   // Automatically load images from public/portfolio-assets/[category]
   const directoryPath = path.join(process.cwd(), 'public', 'portfolio-assets', category);
@@ -29,7 +29,7 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
     images = files
       .filter((f) => f.match(/\.(jpg|jpeg|png|webp)$/i))
       .map((f) => `/portfolio-assets/${category}/${f}`);
-  } catch (e) {
+  } catch {
     console.log('No directory or files for', category);
   }
 
@@ -49,7 +49,7 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
       {/* Uniform Primary Cave Background */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center bg-fixed transition-all duration-700 pointer-events-none"
-        style={{ backgroundImage: `url('/${bgImage}')` }}
+        style={{ backgroundImage: `url('${bgImage}')` }}
       >
         <div className="absolute inset-0 bg-[#050508]/80 backdrop-blur-[2px]"></div>
       </div>
@@ -86,9 +86,6 @@ export default async function ShowcasePage({ params }: { params: Promise<{ categ
         {/* Center Tier: Work Showcase Container (Squarely in Center) */}
         <ShowcaseCarousel category={category} images={images} />
       </div>
-
-      {/* Script for Phosphor Icons */}
-      <script src="https://unpkg.com/@phosphor-icons/web" async></script>
     </main>
   );
 }
