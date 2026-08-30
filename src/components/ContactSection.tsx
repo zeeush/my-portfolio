@@ -8,14 +8,14 @@ const WHATSAPP_DM_URL = "https://wa.me/918299114703?text=Hello%20Zeeshan!%20I%20
 export default function ContactSection() {
   return (
     <motion.div
-      className="relative z-10 max-w-3xl w-full mx-auto px-4 py-8 sm:py-12 text-center flex flex-col items-center justify-center"
+      className="relative z-10 max-w-2xl w-full mx-auto px-4 py-8 sm:py-12 text-center flex flex-col items-center justify-center"
       initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Scaled-Up 3D Brand Core Floating PNG Emblem Centered with Background Core */}
-      <div className="flex justify-center items-center mx-auto mb-2 mt-0 relative">
+      <div className="flex justify-center items-center mx-auto mb-3 mt-0 relative">
         <Link href="#about" className="relative group cursor-pointer flex items-center justify-center">
           <div className="absolute inset-0 bg-purple-500/40 rounded-full blur-3xl group-hover:bg-purple-500/60 transition-all -z-10" />
           <img
@@ -26,33 +26,38 @@ export default function ContactSection() {
         </Link>
       </div>
 
-      {/* 1. Dark Gradient Scrim / Glassmorphic Card Container for Guaranteed Legibility */}
-      <div className="relative w-full max-w-2xl mx-auto p-6 sm:p-10 rounded-3xl bg-[#06080e]/80 sm:bg-[#06080e]/90 border border-white/10 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(0,240,255,0.06)] flex flex-col items-center text-center gap-4 mt-2">
+      {/* Typography & CTA Content Stack */}
+      <div className="flex flex-col items-center text-center gap-2 max-w-2xl mx-auto w-full mt-2">
         
-        {/* Subtle Top Cyan Glow Accent */}
-        <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
+        {/* Line 1: Clickable Animated Neon CTA (JetBrains Mono -> WhatsApp) */}
+        <Link
+          href={WHATSAPP_DM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-400/60 text-cyan-300 hover:text-cyan-100 text-sm sm:text-base font-['JetBrains_Mono',monospace] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 hover:border-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.35)] drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] cursor-pointer group"
+        >
+          <i className="ph ph-cursor-click text-cyan-400 text-base sm:text-lg animate-bounce group-hover:rotate-12 transition-transform" />
+          <span>LET&apos;S COLLABORATE</span>
+        </Link>
 
-        {/* 2. Eyebrow Tag / Small Label: Bright Accent Color & Spaced Typography */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-400/50 shadow-[0_0_15px_rgba(0,240,255,0.25)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.2em] text-cyan-300 uppercase drop-shadow-[0_0_8px_rgba(0,240,255,0.7)]">
-            Ready to Level Up Your Brand?
-          </span>
-        </div>
-
-        {/* 2 & 3. Main Heading: Bold / Extra-Bold Pure White with High Contrast & Comfortable Line Height */}
-        <h2 className="font-['Outfit',sans-serif] text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight uppercase text-center leading-[1.25] sm:leading-[1.3] drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] mt-1">
-          LET&apos;S FORGE AN ICONIC BRAND IDENTITY THAT COMMANDS ATTENTION.
+        {/* Line 2: Heavy Display Headline (Orbitron) */}
+        <h2 className="font-['Orbitron',sans-serif] text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-wide uppercase mt-2 text-center drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          Ready to Level Up Your Brand?
         </h2>
 
-        {/* 2. Paragraph Text: Secondary Muted Off-White, Highly Legible */}
-        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-300 font-medium text-sm sm:text-base leading-relaxed max-w-xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        {/* Line 3: Modern Display Sub-headline (Syne) */}
+        <p className="font-['Syne',sans-serif] text-sm sm:text-base md:text-lg font-bold tracking-widest text-cyan-200/90 uppercase mt-3 max-w-lg mx-auto text-center leading-relaxed">
+          LET&apos;S FORGE AN ICONIC BRAND IDENTITY THAT COMMANDS ATTENTION.
+        </p>
+
+        {/* Line 4: Body Description - Lightweight, Muted Gray, Clear Spacing Gap (No Container) */}
+        <p className="font-['Plus_Jakarta_Sans',sans-serif] text-center text-zinc-400 font-normal text-sm sm:text-base leading-relaxed max-w-xl mx-auto mt-4 sm:mt-5 px-4 sm:px-0">
           Whether you need an iconic logo, a high-converting banner set, or a complete brand ecosystem—let&apos;s build something unforgettable together.
         </p>
 
-        {/* 3. Action Buttons with Ample Margin & Separation */}
+        {/* High-Contrast Floating CTA Button Stack */}
         <motion.div 
-          className="mt-4 mb-2 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto mx-auto relative z-20"
+          className="mt-8 mb-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto mx-auto relative z-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
