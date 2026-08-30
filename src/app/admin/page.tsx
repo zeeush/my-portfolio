@@ -739,7 +739,7 @@ export default function AdminPage() {
 
               {/* Project Description Input */}
               <div className="w-full">
-                <label className="block text-sm font-semibold font-mono text-zinc-300 uppercase tracking-wide mb-2.5">
+                <label className="block text-center text-sm font-semibold font-mono text-zinc-300 uppercase tracking-wide mb-2.5">
                   Project Description & Deliverables
                 </label>
                 <textarea
