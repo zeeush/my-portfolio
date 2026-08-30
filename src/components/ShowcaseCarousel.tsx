@@ -70,15 +70,18 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
     setCurrentIndex((prev) => (prev - 1 + (items.length || 1)) % (items.length || 1));
   }, [items.length]);
 
-  // Lock body scroll when lightbox is active
+  // Lock body scroll and smoothly hide site header when lightbox is active
   useEffect(() => {
     if (isLightboxOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('lightbox-open');
     } else {
       document.body.style.overflow = '';
+      document.body.classList.remove('lightbox-open');
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.classList.remove('lightbox-open');
     };
   }, [isLightboxOpen]);
 
