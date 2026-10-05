@@ -455,7 +455,7 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden max-w-[1400px] mx-4 sm:mx-8 xl:mx-auto my-16 p-12 md:p-16"
+        className="process relative overflow-hidden max-w-[1420px] mx-4 sm:mx-8 xl:mx-auto my-16 p-[58px] md:p-[74px]"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -475,14 +475,6 @@ export default function Home() {
         )}
 
         <div className="relative z-10 w-full">
-          {/* Seamless Faded Blur Background */}
-          <div 
-            className="absolute -inset-[10px] bg-black/40 backdrop-blur-lg -z-10"
-            style={{ 
-              WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)', 
-              maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)' 
-            }}
-          ></div>
           <p className="section-tag drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">MY PROCESS</p>
           <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit'] drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">
             {content.process.sectionTitle || 'A Proven 4-Step Process'}
