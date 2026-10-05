@@ -324,14 +324,13 @@ export default function Home() {
           <div className="about-content-wrapper">
             {/* Glassmorphic Story Box */}
             <motion.div
-              className="about-glass-box p-24 sm:p-32 lg:p-[120px] !max-w-5xl mx-auto"
+              className="about-glass-box p-8 sm:p-10"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
-              <div className="max-w-3xl mx-auto space-y-10">
-                <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2">
                   <p className="section-tag">MY STORY</p>
                 {content.about.experienceYears && (
                   <span className="inline-flex items-center justify-center gap-2 relative text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase group whitespace-nowrap cursor-default">
@@ -381,7 +380,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-              </div>
             </motion.div>
 
             {/* Floating Tool Badges */}
@@ -444,7 +442,7 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-6xl mx-4 sm:mx-8 xl:mx-auto my-16 p-24 pb-[100px] sm:p-32 sm:pb-[120px] lg:p-[100px] lg:pb-[150px]"
+        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-6xl mx-4 sm:mx-8 xl:mx-auto my-16 p-8 sm:p-10"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -462,7 +460,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="relative z-10 w-full space-y-6">
+        <div className="relative z-10 w-full">
           <p className="section-tag">MY PROCESS</p>
           <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit']">
             {content.process.sectionTitle || 'A Proven 4-Step Process'}
