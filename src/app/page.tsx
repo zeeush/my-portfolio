@@ -352,7 +352,7 @@ export default function Home() {
               <div className="relative p-6 sm:p-8">
                 {/* Seamless Faded Blur Background */}
                 <div 
-                  className="absolute -inset-[2px] bg-black/40 backdrop-blur-lg -z-10"
+                  className="absolute -inset-[5px] bg-black/40 backdrop-blur-lg -z-10"
                   style={{ 
                     WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)', 
                     maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)' 
