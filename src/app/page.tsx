@@ -324,7 +324,7 @@ export default function Home() {
           <div className="about-content-wrapper">
             {/* Glassmorphic Story Box */}
             <motion.div
-              className="about-glass-box relative -m-4 sm:-m-8 p-12 sm:p-16 !max-w-[750px]"
+              className="about-glass-box relative w-full lg:w-1/2 lg:ml-auto !max-w-none"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
