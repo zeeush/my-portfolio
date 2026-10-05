@@ -475,6 +475,14 @@ export default function Home() {
         )}
 
         <div className="relative z-10 w-full">
+          {/* Seamless Faded Blur Background */}
+          <div 
+            className="absolute -inset-[10px] bg-black/40 backdrop-blur-lg -z-10"
+            style={{ 
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)', 
+              maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)' 
+            }}
+          ></div>
           <p className="section-tag drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">MY PROCESS</p>
           <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit'] drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">
             {content.process.sectionTitle || 'A Proven 4-Step Process'}
