@@ -12,7 +12,7 @@ export default function GlobalError({
         <h2 className="text-2xl font-bold mb-4 font-mono">Something went wrong!</h2>
         <button
           onClick={() => reset()}
-          className="px-6 py-2.5 rounded-xl bg-cyan-500 text-black font-bold uppercase font-mono tracking-wider hover:bg-cyan-400 transition-all cursor-pointer"
+          className="px-6 py-2.5 rounded-xl bg-cyan-500 text-black font-bold uppercase font-mono tracking-wider hover:bg-cyan-400 transition-all"
         >
           Try again
         </button>
