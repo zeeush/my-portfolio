@@ -324,7 +324,7 @@ export default function Home() {
           <div className="about-content-wrapper">
             {/* Glassmorphic Story Box */}
             <motion.div
-              className="about-glass-box p-8 sm:p-10"
+              className="about-glass-box -m-4 sm:-m-8 p-12 sm:p-16 !max-w-[750px]"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -442,7 +442,7 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-6xl mx-4 sm:mx-8 xl:mx-auto my-16 p-8 sm:p-10"
+        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-[1400px] mx-4 sm:mx-8 xl:mx-auto my-16 p-12 md:p-16"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
