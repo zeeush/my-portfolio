@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Zeeshan | Senior Logo Designer & Brand Strategist",
   description: "Crafting Timeless Design & Brand Identities",
+  openGraph: {
+    title: "Zeeshan | Senior Logo Designer & Brand Strategist",
+    description: "Crafting Timeless Design & Brand Identities",
+  },
 };
 
 export default function RootLayout({
@@ -27,16 +31,6 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
-          rel="stylesheet"
-        />
-        <script src="https://unpkg.com/@phosphor-icons/web" async></script>
-      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
