@@ -15,9 +15,9 @@ const SERVICES = [
 ];
 
 const inputCls =
-  'w-full px-5 py-4 bg-zinc-900/90 border border-zinc-700/80 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 rounded-xl text-base text-white placeholder-zinc-400 transition-all outline-none';
+  'w-full px-4 py-3.5 sm:px-5 sm:py-4 bg-zinc-900/90 border border-zinc-700/80 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 rounded-xl text-sm sm:text-base text-white placeholder-zinc-400 transition-all outline-none';
 
-const labelCls = 'block text-sm font-semibold text-zinc-200 tracking-wide mb-2.5';
+const labelCls = 'block text-xs sm:text-sm font-semibold text-zinc-200 tracking-wide mb-2';
 
 export default function StartProjectPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -91,15 +91,15 @@ export default function StartProjectPage() {
 
       <Navbar />
 
-      <main className="min-h-screen w-full bg-[#050508] pt-40 pb-24 px-4 sm:px-6 flex flex-col items-center justify-center">
+      <main className="min-h-screen w-full bg-[#050508] pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 flex flex-col items-center justify-center">
 
         {/* Back link — left-aligned at card width */}
-        <div className="w-full max-w-4xl mx-auto mb-6">
+        <div className="w-full max-w-4xl mx-auto mb-4 sm:mb-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 hover:border-cyan-500/40 text-sm font-medium text-zinc-300 hover:text-cyan-400 transition-all group"
+            className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 hover:border-cyan-500/40 text-xs sm:text-sm font-medium text-zinc-300 hover:text-cyan-400 transition-all group"
           >
-            <i className="ph ph-arrow-left text-sm group-hover:-translate-x-1 transition-transform" />
+            <i className="ph ph-arrow-left text-xs sm:text-sm group-hover:-translate-x-1 transition-transform" />
             <span>Back to Home</span>
           </Link>
         </div>
@@ -110,14 +110,14 @@ export default function StartProjectPage() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-            className="w-full max-w-4xl mx-auto bg-zinc-950/90 border border-zinc-800/80 rounded-2xl p-12 shadow-2xl flex flex-col items-center text-center gap-7"
+            className="w-full max-w-4xl mx-auto bg-zinc-950/90 border border-zinc-800/80 rounded-2xl p-6 sm:p-12 shadow-2xl flex flex-col items-center text-center gap-6"
           >
-            <div className="w-20 h-20 rounded-full bg-cyan-400/15 border-2 border-cyan-400 flex items-center justify-center shadow-[0_0_35px_rgba(6,182,212,0.5)]">
-              <i className="ph ph-check-bold text-cyan-400 text-3xl" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cyan-400/15 border-2 border-cyan-400 flex items-center justify-center shadow-[0_0_35px_rgba(6,182,212,0.5)]">
+              <i className="ph ph-check-bold text-cyan-400 text-2xl sm:text-3xl" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-3xl font-extrabold text-white tracking-tight">Brief Prepared!</h2>
-              <p className="text-base text-zinc-300 max-w-md mx-auto leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Brief Prepared!</h2>
+              <p className="text-sm sm:text-base text-zinc-300 max-w-md mx-auto leading-relaxed">
                 Your email client has opened with the intake brief addressed to{' '}
                 <span className="text-cyan-400 font-mono">z3shan.in@gmail.com</span>.
                 Hit send to deliver it.
@@ -125,7 +125,7 @@ export default function StartProjectPage() {
             </div>
             <button
               onClick={() => { setSubmitted(false); setSelectedServices([]); }}
-              className="px-8 py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-white/10 text-white text-sm font-bold tracking-wide transition-all cursor-pointer"
+              className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-white/10 text-white text-xs sm:text-sm font-bold tracking-wide transition-all cursor-pointer"
             >
               Submit Another Brief
             </button>
@@ -137,17 +137,17 @@ export default function StartProjectPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-4xl mx-auto p-8 sm:p-12 md:p-14 bg-zinc-950/90 border border-zinc-800/80 rounded-2xl shadow-2xl"
+            className="w-full max-w-4xl mx-auto p-5 sm:p-10 md:p-14 bg-zinc-950/90 border border-zinc-800/80 rounded-2xl shadow-2xl"
           >
             {/* Card Header */}
-            <div className="text-center mb-10">
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-cyan-400 mb-3 block">
+            <div className="text-center mb-6 sm:mb-10">
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-cyan-400 mb-2 sm:mb-3 block">
                 Project Intake
               </span>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white text-center tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center tracking-tight">
                 Start a Project
               </h1>
-              <p className="w-full text-center text-sm sm:text-base text-zinc-400 mt-2 sm:whitespace-nowrap">
+              <p className="w-full text-center text-xs sm:text-sm md:text-base text-zinc-400 mt-2">
                 Have a project in mind? Fill out the brief below and I&apos;ll get back to you within 24 hours.
               </p>
             </div>
@@ -223,8 +223,8 @@ export default function StartProjectPage() {
 
               {/* Row 3 — Services Needed */}
               <div>
-                <label className={`${labelCls} mb-3`}>Services Needed</label>
-                <div className="flex flex-wrap gap-3">
+                <label className={`${labelCls} mb-2.5`}>Services Needed</label>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {SERVICES.map((svc) => {
                     const active = selectedServices.includes(svc.id);
                     return (
@@ -232,7 +232,7 @@ export default function StartProjectPage() {
                         key={svc.id}
                         type="button"
                         onClick={() => toggleService(svc.id)}
-                        className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium border transition-all cursor-pointer select-none ${active
+                        className={`inline-flex items-center gap-2 px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium border transition-all cursor-pointer select-none ${active
                           ? 'bg-cyan-500/15 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.25)]'
                           : 'bg-zinc-900 border-zinc-700/80 text-zinc-200 hover:border-cyan-400 hover:text-cyan-300'
                           }`}
@@ -257,7 +257,7 @@ export default function StartProjectPage() {
                   value={formData.projectDetails}
                   onChange={handleChange}
                   placeholder="Tell me about your goals, target audience, and key deliverables..."
-                  className="w-full p-5 bg-zinc-900/90 border border-zinc-700/80 rounded-xl text-base text-white placeholder-zinc-400 min-h-[160px] focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none transition-all resize-y leading-relaxed"
+                  className="w-full p-4 sm:p-5 bg-zinc-900/90 border border-zinc-700/80 rounded-xl text-sm sm:text-base text-white placeholder-zinc-400 min-h-[140px] sm:min-h-[160px] focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none transition-all resize-y leading-relaxed"
                 />
               </div>
 
@@ -282,12 +282,12 @@ export default function StartProjectPage() {
               <div>
                 <button
                   type="submit"
-                  className="w-full min-h-[58px] px-8 py-4 bg-cyan-500 hover:bg-cyan-400 active:scale-[0.98] text-zinc-950 font-black text-base uppercase tracking-wider rounded-xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.45)] hover:shadow-[0_0_40px_rgba(6,182,212,0.7)] flex items-center justify-center gap-3 mt-4 cursor-pointer"
+                  className="w-full min-h-[50px] sm:min-h-[58px] px-6 sm:px-8 py-3.5 sm:py-4 bg-cyan-500 hover:bg-cyan-400 active:scale-[0.98] text-zinc-950 font-black text-sm sm:text-base uppercase tracking-wider rounded-xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.45)] hover:shadow-[0_0_40px_rgba(6,182,212,0.7)] flex items-center justify-center gap-2.5 mt-3 sm:mt-4 cursor-pointer"
                 >
-                  <i className="ph ph-paper-plane-tilt text-xl font-bold" />
+                  <i className="ph ph-paper-plane-tilt text-lg sm:text-xl font-bold" />
                   <span>Send Project Brief</span>
                 </button>
-                <p className="text-sm text-zinc-400 text-center mt-3 font-medium">
+                <p className="text-xs sm:text-sm text-zinc-400 text-center mt-3 font-medium">
                   🔒 Confidential • Direct response from Zeeshan within 24 hours
                 </p>
               </div>
