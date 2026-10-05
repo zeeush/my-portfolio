@@ -349,17 +349,19 @@ export default function Home() {
               </h2>
               <div className="divider drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]"></div>
 
-              {content.about.bio && (
-                <p className="about-text font-medium text-cyan-200/90 mb-3 text-base sm:text-lg drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
-                  I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don&apos;t just create visuals — I architect immersive brand ecosystems.
-                </p>
-              )}
+              <div className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/5">
+                {content.about.bio && (
+                  <p className="about-text font-medium text-cyan-200/90 mb-3 text-base sm:text-lg drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
+                    I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don&apos;t just create visuals — I architect immersive brand ecosystems.
+                  </p>
+                )}
 
-              {content.about.story.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="about-text drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
-                  {paragraph}
-                </p>
-              ))}
+                {content.about.story.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="about-text drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
 
               {/* Skills Tags Pills */}
               {content.about.skills && content.about.skills.length > 0 && (
