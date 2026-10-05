@@ -1,0 +1,33 @@
+[
+  {
+    "id": "inq_1789899837060_nd0gs",
+    "fullName": "Elena Rostova",
+    "email": "elena@cyberscape.design",
+    "companyName": "CyberScape Dynamics",
+    "timeline": "- • 3 Weeks",
+    "services": [
+      "Brand Identity",
+      "Logo Design"
+    ],
+    "projectDetails": "Need complete rebrand and vector identity suite.",
+    "referenceLinks": "",
+    "status": "new",
+    "createdAt": "2026-09-20T10:23:57.060Z"
+  },
+  {
+    "id": "inq_1726820000000_init",
+    "fullName": "Aarav Sharma",
+    "email": "aarav.sharma@nexusventures.io",
+    "companyName": "Nexus Ventures",
+    "timeline": "$3,000 - $5,000 • 2-3 Weeks",
+    "services": [
+      "Brand Identity",
+      "Logo Design",
+      "Print & Packaging"
+    ],
+    "projectDetails": "We are building an early-stage fintech venture studio and need a cohesive, modern visual identity, logo suite, typography hierarchy, and branded digital assets.",
+    "referenceLinks": "https://nexusventures.io",
+    "status": "new",
+    "createdAt": "2026-09-18T10:15:00.000Z"
+  }
+]

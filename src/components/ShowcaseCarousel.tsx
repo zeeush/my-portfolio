@@ -336,11 +336,14 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
           {activeItem.description}
         </p>
 
-        {/* 4. Hashtags Formatting: Isolated at bottom, smaller, subtle cyan brand color */}
+        {/* 4. Hashtags Formatting: Generous badges with comfortable padding */}
         {activeItem.tags && activeItem.tags.length > 0 && (
-          <div className="text-xs font-mono text-cyan-500/80 flex flex-wrap justify-center items-center gap-2 mt-1">
+          <div className="flex flex-wrap justify-center items-center gap-2 mt-2">
             {activeItem.tags.map((tag) => (
-              <span key={tag} className="hover:text-cyan-400 transition-colors">
+              <span
+                key={tag}
+                className="px-3.5 py-1.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-semibold tracking-wide hover:border-cyan-400 hover:text-white transition-all shadow-sm"
+              >
                 {tag.startsWith('#') ? tag : `#${tag}`}
               </span>
             ))}

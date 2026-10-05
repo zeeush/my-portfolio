@@ -176,3 +176,28 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+
+// PATCH reorder projects array (Protected)
+export async function PATCH(request: Request) {
+  try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: 'Unauthorized. Admin session required.' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { projects } = body;
+
+    if (!Array.isArray(projects)) {
+      return NextResponse.json({ error: 'Projects array is required for reordering.' }, { status: 400 });
+    }
+
+    saveProjectsData(projects);
+
+    return NextResponse.json({ success: true, message: 'Projects reordered successfully', projects });
+  } catch (error: unknown) {
+    console.error('Error reordering projects:', error);
+    const message = error instanceof Error ? error.message : 'Failed to reorder projects';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
+

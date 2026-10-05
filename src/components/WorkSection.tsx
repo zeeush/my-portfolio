@@ -1,91 +1,93 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+interface Project {
+  id: string;
+  title: string;
+  year: string;
+  shortDesc: string;
+  type: string;
+  image: string;
+}
+
+interface Category {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  coverImage: string;
+  projects: Project[];
+}
 
 export default function WorkSection() {
-  const categories = [
-    {
-      id: 'logo',
-      title: 'Logo & Brand Identity',
-      subtitle: 'Vector Systems & Visual Identities',
-      preview: '/assets/logo_1.jpg',
-      icon: 'ph-crown',
-      accent: 'cyan',
-    },
-    {
-      id: 'banners',
-      title: 'High-Converting Banners & Posters',
-      subtitle: 'High-Impact Performance Ad Creatives',
-      preview: '/assets/designer_desk.jpg',
-      icon: 'ph-image',
-      accent: 'purple',
-    },
-    {
-      id: 'magazine',
-      title: 'Full Magazine Layout',
-      subtitle: 'Editorial Typography & Multi-Page Layouts',
-      preview: '/assets/hero_z_logo.jpg',
-      icon: 'ph-book-open',
-      accent: 'cyan',
-    },
-    {
-      id: 'youtube',
-      title: 'AI-Crafted YouTube Thumbnails',
-      subtitle: 'CTR-Optimized Visual Gaming Graphics',
-      preview: '/assets/hero_bg_new.png',
-      icon: 'ph-youtube-logo',
-      accent: 'purple',
-    },
-    {
-      id: 'instagram',
-      title: 'Instagram Brand Campaigns',
-      subtitle: 'Viral Social Media Kits & Carousels',
-      preview: '/assets/story_designer.png',
-      icon: 'ph-instagram-logo',
-      accent: 'cyan',
-    },
-    {
-      id: 'creator',
-      title: 'Content Creation & Media',
-      subtitle: 'Immersive 3D & Live Streaming Assets',
-      preview: '/assets/hero_landscape_z.jpg',
-      icon: 'ph-broadcast',
-      accent: 'purple',
-    },
-  ];
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const res = await fetch('/api/portfolio');
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data);
+        }
+      } catch (err) {
+        console.error('Failed to load portfolio data:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadCategories();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-20 text-cyan-400 font-mono animate-pulse">Loading Selected Works...</div>;
+  }
+
+  // Fallback icons mapped by id (or we could add icon to the schema)
+  const icons: Record<string, string> = {
+    logo: 'ph-crown',
+    banners: 'ph-image',
+    magazine: 'ph-book-open',
+    youtube: 'ph-youtube-logo',
+    instagram: 'ph-instagram-logo',
+    creator: 'ph-broadcast',
+  };
 
   return (
-    <div className="portfolio-grid">
+    <div className="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {categories.map((cat) => (
         <Link
-          href={`/showcase/${cat.id}`}
+          href={`/showcase/${cat.slug}`}
           key={cat.id}
           className="portfolio-folder group"
         >
           {/* Cover Preview Graphic Overlay */}
           <div
-            className="folder-preview-overlay"
+            className="folder-preview-overlay transition-transform duration-700 group-hover:scale-105"
             style={{
-              backgroundImage: `url(${cat.preview})`,
+              backgroundImage: `url(${cat.coverImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
           />
 
-          {/* Folder Tab Header & Icon (Clean without Portfolio label) */}
+          {/* Folder Tab Header & Icon */}
           <div className="flex items-center justify-between w-full relative z-10">
-            <div className="folder-icon">
-              <i className={`ph ${cat.icon}`}></i>
+            <div className="folder-icon bg-zinc-950/80 backdrop-blur-md">
+              <i className={`ph ${icons[cat.id] || 'ph-folder'}`}></i>
             </div>
           </div>
 
           {/* Folder Content & Impactful Title */}
-          <div className="folder-content">
-            <h3>{cat.title}</h3>
-            <p>{cat.subtitle}</p>
+          <div className="folder-content bg-transparent pt-12">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{cat.title}</h3>
+            <p className="text-zinc-300 text-sm mb-4 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{cat.description}</p>
 
-            <div className="folder-action-pill">
-              <span>Explore 3D Showcase</span>
+            <div className="folder-action-pill drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+              <span>View Projects ({cat.projects?.length || 0})</span>
               <i className="ph ph-arrow-right text-xs"></i>
             </div>
           </div>

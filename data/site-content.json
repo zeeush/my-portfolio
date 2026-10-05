@@ -1,0 +1,59 @@
+{
+  "home": {
+    "headline": "Timeless Craftsmanship. Next-Gen Velocity",
+    "tagline": "Design isn't just about aesthetics, it's about connection and intent. Grounded in over a decade of hands-on execution and high-speed modern workflows, I forge distinct visual identities that leave a lasting mark across every screen and surface.",
+    "ctaText": "Explore My Work",
+    "ctaLink": "#work",
+    "bgImage": "/images/1stpage-bg.jpg"
+  },
+  "about": {
+    "bio": "I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don't just design logos — I build immersive brand ecosystems.",
+    "experienceYears": "12+",
+    "story": "My journey began over a decade ago in the high-pressure print houses of Varanasi, mastering CorelDRAW and layout architecture by executing everything from local branding collaterals to rebuilding an entire 66-page magazine under tight deadlines.\n\nAs media transitioned, I channeled that foundational discipline into modern digital storytelling, where my active experience in video editing, live streaming, and content creation sharpened my understanding of audience psychology, visual pacing, and retention. Today, by fusing traditional design mastery (Adobe Premiere Pro, CorelDRAW, Canva, CapCut) with cutting-edge AI workflows (Leonardo.ai, Gemini, ChatGPT, Claude, Kling AI), I deliver premium quality at unmatched speeds — bridging core design fundamentals with next-gen generative technology to engineer high-converting visual solutions that dominate competitive spaces.",
+    "skills": [
+      "Brand Strategy",
+      "Logo Design",
+      "Vector Architecture",
+      "CorelDRAW",
+      "Adobe Premiere Pro",
+      "Generative AI & LLMs",
+      "Motion Graphics",
+      "Editorial Layouts",
+      "Packaging Design",
+      "Canva Pro",
+      "CapCut"
+    ],
+    "bgImage": ""
+  },
+  "work": {
+    "sectionTitle": "Selected Works",
+    "sectionSubtitle": "10000+ successful projects delivered across tech, gaming, finance, lifestyle & enterprise brands.",
+    "bgImage": "/uploads/work_bg_1790335357662.jpg"
+  },
+  "process": {
+    "sectionTitle": "A Proven 4-Step Process",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Strategic Discovery & AI ideation",
+        "description": "Leveraging LLMs and generative AI (Leonardo.ai, Claude) alongside deep brand research to explore broad creative directions and rapid concept benchmarking."
+      },
+      {
+        "number": "02",
+        "title": "Foundation & Visual Architecture",
+        "description": "Distilling ideas with core design principles, structural composition, and typography hierarchy to establish a solid, memorable visual identity."
+      },
+      {
+        "number": "03",
+        "title": "Precision Vectoring & Editing",
+        "description": "Translating concepts into pixel-perfect vectors and multimedia assets using CorelDRAW, Premiere Pro, and Canva for seamless scalability across print and digital media."
+      },
+      {
+        "number": "04",
+        "title": "Ecosystem Deployment & Mockups",
+        "description": "Bringing brand assets to life with photorealistic 3D mockups, campaign-ready formats, and real-world collateral built for high conversion and market impact."
+      }
+    ],
+    "bgImage": ""
+  }
+}

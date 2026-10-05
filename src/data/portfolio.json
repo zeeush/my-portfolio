@@ -1,0 +1,59 @@
+[
+  {
+    "id": "logo",
+    "slug": "logo",
+    "title": "Logo & Brand Identity",
+    "description": "Vector Systems & Visual Identities",
+    "coverImage": "/work/portfolio-covers/Glowing_vector_logo_in_space_2K_20260925163902_1790335679390.jpg",
+    "projects": [
+      {
+        "id": "proj_1790335633432",
+        "title": "dfgdfgdrrg",
+        "year": "2026",
+        "shortDesc": "gdrgdrgdrgd",
+        "type": "dgrdrgd",
+        "image": "/work/portfolio-logo/YUG_logo_1790335633425.jpg"
+      }
+    ]
+  },
+  {
+    "id": "banners",
+    "slug": "banners",
+    "title": "High-Converting Banners & Posters",
+    "description": "High-Impact Performance Ad Creatives",
+    "coverImage": "/work/portfolio-covers/Glowing_digital_billboards_and_U__2K_20260925163943_1790336954861.jpg",
+    "projects": []
+  },
+  {
+    "id": "magazine",
+    "slug": "magazine",
+    "title": "Full Magazine Layout",
+    "description": "Editorial Typography & Multi-Page Layouts",
+    "coverImage": "/work/portfolio-covers/Floating_glowing_digital_magazin__2K_20260925164027_1790336986478.jpg",
+    "projects": []
+  },
+  {
+    "id": "youtube",
+    "slug": "youtube",
+    "title": "AI-Crafted YouTube Thumbnails",
+    "description": "CTR-Optimized Visual Gaming Graphics",
+    "coverImage": "/work/portfolio-covers/Glowing_YouTube_play_button_hove__2K_20260925164149_1790336994916.jpg",
+    "projects": []
+  },
+  {
+    "id": "instagram",
+    "slug": "instagram",
+    "title": "Instagram Brand Campaigns",
+    "description": "Viral Social Media Kits & Carousels",
+    "coverImage": "/work/portfolio-covers/Floating_glowing_social_media_icons_2K_20260925164359_1790337001473.jpg",
+    "projects": []
+  },
+  {
+    "id": "creator",
+    "slug": "creator",
+    "title": "Content Creation & Media",
+    "description": "Immersive 3D & Live Streaming Assets",
+    "coverImage": "/work/portfolio-covers/Futuristic_content_creator_studi__2K_20260925172035_1790337060979.jpg",
+    "projects": []
+  }
+]
