@@ -324,7 +324,7 @@ export default function Home() {
           <div className="about-content-wrapper">
             {/* Glassmorphic Story Box */}
             <motion.div
-              className="about-glass-box p-6 sm:p-10 md:p-12"
+              className="about-glass-box p-8 sm:p-10 md:p-12 space-y-6"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -442,7 +442,7 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-6xl mx-4 sm:mx-8 xl:mx-auto my-16 py-16 px-4 sm:py-20 sm:px-8"
+        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-6xl mx-4 sm:mx-8 xl:mx-auto my-16 p-8 sm:p-12"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -460,7 +460,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="relative z-10 w-full">
+        <div className="relative z-10 w-full space-y-6">
           <p className="section-tag">MY PROCESS</p>
           <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit']">
             {content.process.sectionTitle || 'A Proven 4-Step Process'}
