@@ -7,12 +7,60 @@
     "coverImage": "/work/portfolio-covers/Glowing_vector_logo_in_space_2K_20260925163902_1790335679390.jpg",
     "projects": [
       {
-        "id": "proj_1790335633432",
-        "title": "dfgdfgdrrg",
-        "year": "2026",
-        "shortDesc": "gdrgdrgdrgd",
-        "type": "dgrdrgd",
-        "image": "/work/portfolio-logo/YUG_logo_1790335633425.jpg"
+        "id": "sitm-institute",
+        "title": "SITM Academic Crest",
+        "year": "2025",
+        "shortDesc": "Academic Identity & Institutional Branding",
+        "type": "Identity System",
+        "image": "/images/showcase/sitm-institute-mockup.png"
+      },
+      {
+        "id": "bit-n-bite",
+        "title": "Bit n Bite Brand Suite",
+        "year": "2024",
+        "shortDesc": "Quick-Service Restaurant & Packaging Identity",
+        "type": "Packaging & QSR",
+        "image": "/images/showcase/bitnbite-packaging-mockup.png"
+      },
+      {
+        "id": "heritage-hospitals",
+        "title": "Heritage Hospitals Identity",
+        "year": "2025",
+        "shortDesc": "Healthcare Branding & Signage Architecture",
+        "type": "Healthcare",
+        "image": "/images/showcase/heritage-hospitals-mockup.png"
+      },
+      {
+        "id": "newday-magazine",
+        "title": "New Day Magazine",
+        "year": "2024",
+        "shortDesc": "Editorial Masthead & Publication Identity",
+        "type": "Editorial",
+        "image": "/images/showcase/newday-magazine-mockup.png"
+      },
+      {
+        "id": "rizaim-cuisine",
+        "title": "Rizaim Culinary Identity",
+        "year": "2024",
+        "shortDesc": "Digital Media & YouTube Culinary Branding",
+        "type": "Media & Food",
+        "image": "/images/showcase/rizaim-cuisine-mockup.png"
+      },
+      {
+        "id": "abhisaar-tech",
+        "title": "Abhisaar Tech Identity",
+        "year": "2024",
+        "shortDesc": "Enterprise Brand Identity & Visual System",
+        "type": "Tech Enterprise",
+        "image": "/images/showcase/abhisaar-stone-mockup.png"
+      },
+      {
+        "id": "kaara-technologies",
+        "title": "Kaara Technologies Identity",
+        "year": "2024",
+        "shortDesc": "IT Infrastructure & Network Brand Identity",
+        "type": "Infrastructure",
+        "image": "/images/showcase/kaara-technologies.png"
       }
     ]
   },
@@ -22,7 +70,56 @@
     "title": "High-Converting Banners & Posters",
     "description": "High-Impact Performance Ad Creatives",
     "coverImage": "/work/portfolio-covers/Glowing_digital_billboards_and_U__2K_20260925163943_1790336954861.jpg",
-    "projects": []
+    "projects": [
+      {
+        "id": "banners-1",
+        "title": "CyberTech Launch Poster",
+        "year": "2025",
+        "shortDesc": "Futuristic advertising poster with neon typography",
+        "type": "Performance Ad",
+        "image": "/portfolio-assets/banners/banner_mockup_1.jpg"
+      },
+      {
+        "id": "banners-2",
+        "title": "Performance Digital Creative",
+        "year": "2025",
+        "shortDesc": "Conversion-optimized display ad campaign",
+        "type": "Digital Creative",
+        "image": "/portfolio-assets/banners/designer_desk.jpg"
+      },
+      {
+        "id": "banners-3",
+        "title": "Urban Cyberpunk Billboard",
+        "year": "2024",
+        "shortDesc": "Large-scale illuminated billboard mockup",
+        "type": "OOH Billboard",
+        "image": "/portfolio-assets/banners/banner_mockup_1.jpg"
+      },
+      {
+        "id": "banners-4",
+        "title": "Multi-Format Social Ad Kit",
+        "year": "2025",
+        "shortDesc": "Omni-channel advertising collateral suite",
+        "type": "Paid Social",
+        "image": "/portfolio-assets/banners/hero_z_logo.jpg"
+      },
+      {
+        "id": "banners-5",
+        "title": "Immersive Launch Key Visual",
+        "year": "2025",
+        "shortDesc": "Central campaign key visual fusing graphic mastery",
+        "type": "Key Visual",
+        "image": "/portfolio-assets/banners/story_bg_new.jpg"
+      },
+      {
+        "id": "banners-6",
+        "title": "Motion Banner Storyboard",
+        "year": "2025",
+        "shortDesc": "High-impact storyboard frames for animated video hooks",
+        "type": "Motion Graphics",
+        "image": "/portfolio-assets/banners/work_bg_new.jpg"
+      }
+    ]
   },
   {
     "id": "magazine",
@@ -30,7 +127,56 @@
     "title": "Full Magazine Layout",
     "description": "Editorial Typography & Multi-Page Layouts",
     "coverImage": "/work/portfolio-covers/Floating_glowing_digital_magazin__2K_20260925164027_1790336986478.jpg",
-    "projects": []
+    "projects": [
+      {
+        "id": "magazine-1",
+        "title": "Future Connectivity Spread",
+        "year": "2024",
+        "shortDesc": "Luxury dark-mode editorial spread with Swiss grid",
+        "type": "Editorial Spread",
+        "image": "/portfolio-assets/magazine/magazine_layout_1.jpg"
+      },
+      {
+        "id": "magazine-2",
+        "title": "Quantum Computing Feature",
+        "year": "2024",
+        "shortDesc": "66-page magazine layout delivered in just 72 hours",
+        "type": "Full Publication",
+        "image": "/portfolio-assets/magazine/magazine_layout_1.jpg"
+      },
+      {
+        "id": "magazine-3",
+        "title": "Cover Architecture & Masthead",
+        "year": "2024",
+        "shortDesc": "High-impact editorial cover typography",
+        "type": "Cover Design",
+        "image": "/portfolio-assets/magazine/hero_z_logo.jpg"
+      },
+      {
+        "id": "magazine-4",
+        "title": "Editorial Photo Storyboard",
+        "year": "2024",
+        "shortDesc": "Modern layout pairing typography with digital imagery",
+        "type": "Photo Spread",
+        "image": "/portfolio-assets/magazine/designer_desk.jpg"
+      },
+      {
+        "id": "magazine-5",
+        "title": "Infographic Grid System",
+        "year": "2024",
+        "shortDesc": "Complex data distilled into futuristic chart layouts",
+        "type": "Infographics",
+        "image": "/portfolio-assets/magazine/logo_2.jpg"
+      },
+      {
+        "id": "magazine-6",
+        "title": "Publication Print Proofs",
+        "year": "2024",
+        "shortDesc": "Press-ready CMYK calibrated master files with spot UV",
+        "type": "Print Production",
+        "image": "/portfolio-assets/magazine/logo_4.jpg"
+      }
+    ]
   },
   {
     "id": "youtube",
@@ -38,7 +184,56 @@
     "title": "AI-Crafted YouTube Thumbnails",
     "description": "CTR-Optimized Visual Gaming Graphics",
     "coverImage": "/work/portfolio-covers/Glowing_YouTube_play_button_hove__2K_20260925164149_1790336994916.jpg",
-    "projects": []
+    "projects": [
+      {
+        "id": "youtube-1",
+        "title": "AI Robot Mech Showdown",
+        "year": "2025",
+        "shortDesc": "High-CTR gaming thumbnail featuring 3D typography",
+        "type": "Thumbnail",
+        "image": "/portfolio-assets/youtube/youtube_thumb_1.jpg"
+      },
+      {
+        "id": "youtube-2",
+        "title": "Tech Review Hook Asset",
+        "year": "2025",
+        "shortDesc": "A/B tested thumbnail creative maximizing viewer curiosity",
+        "type": "A/B Tested Hook",
+        "image": "/portfolio-assets/youtube/youtube_thumb_1.jpg"
+      },
+      {
+        "id": "youtube-3",
+        "title": "Channel Visual Branding Kit",
+        "year": "2025",
+        "shortDesc": "Responsive YouTube banner suite for all screen sizes",
+        "type": "Channel Suite",
+        "image": "/portfolio-assets/youtube/hero_bg_new.png"
+      },
+      {
+        "id": "youtube-4",
+        "title": "Esports Tournament Asset",
+        "year": "2025",
+        "shortDesc": "Matchday graphics package for live broadcast scorecards",
+        "type": "Broadcast Live",
+        "image": "/portfolio-assets/youtube/logo_1.jpg"
+      },
+      {
+        "id": "youtube-5",
+        "title": "Creator End-Screen Cards",
+        "year": "2025",
+        "shortDesc": "Animated end-screen frames for subscriber conversion",
+        "type": "Outro Graphics",
+        "image": "/portfolio-assets/youtube/logo_3.jpg"
+      },
+      {
+        "id": "youtube-6",
+        "title": "Streamer Lower Third Suite",
+        "year": "2025",
+        "shortDesc": "Cyberpunk HUD lower-third graphics with alert triggers",
+        "type": "HUD Overlay",
+        "image": "/portfolio-assets/youtube/logo_5.jpg"
+      }
+    ]
   },
   {
     "id": "instagram",
@@ -46,7 +241,40 @@
     "title": "Instagram Brand Campaigns",
     "description": "Viral Social Media Kits & Carousels",
     "coverImage": "/work/portfolio-covers/Floating_glowing_social_media_icons_2K_20260925164359_1790337001473.jpg",
-    "projects": []
+    "projects": [
+      {
+        "id": "instagram-1",
+        "title": "Lumina Volt Launch Post",
+        "year": "2025",
+        "shortDesc": "Sleek luxury neon product launch post for feed engagement",
+        "type": "Product Launch",
+        "image": "/portfolio-assets/instagram/instagram_post_1.jpg"
+      },
+      {
+        "id": "instagram-2",
+        "title": "Educational Carousel Kit",
+        "year": "2025",
+        "shortDesc": "Seamless multi-slide swipeable carousel for high saves",
+        "type": "Carousel Kit",
+        "image": "/portfolio-assets/instagram/instagram_post_1.jpg"
+      },
+      {
+        "id": "instagram-3",
+        "title": "Interactive Story Templates",
+        "year": "2025",
+        "shortDesc": "Dynamic 9:16 vertical story creatives with custom widgets",
+        "type": "9:16 Stories",
+        "image": "/portfolio-assets/instagram/designer_desk.jpg"
+      },
+      {
+        "id": "instagram-4",
+        "title": "Brand Mascot Campaign",
+        "year": "2025",
+        "shortDesc": "Character-driven social campaign posts establishing persona",
+        "type": "Mascot Campaign",
+        "image": "/portfolio-assets/instagram/logo_2.jpg"
+      }
+    ]
   },
   {
     "id": "creator",
@@ -54,6 +282,31 @@
     "title": "Content Creation & Media",
     "description": "Immersive 3D & Live Streaming Assets",
     "coverImage": "/work/portfolio-covers/Futuristic_content_creator_studi__2K_20260925172035_1790337060979.jpg",
-    "projects": []
+    "projects": [
+      {
+        "id": "creator-1",
+        "title": "Cyber Stream Overlay & 3D Assets",
+        "year": "2026",
+        "shortDesc": "Complete broadcast production package with animated 3D alerts",
+        "type": "Stream Overlay",
+        "image": "/assets/hero_landscape_z.jpg"
+      },
+      {
+        "id": "creator-2",
+        "title": "Futuristic 3D Creator Studio",
+        "year": "2025",
+        "shortDesc": "Virtual studio environment art direction for live broadcasts",
+        "type": "3D Virtual Set",
+        "image": "/portfolio-assets/creator/creator_package_1.jpg"
+      },
+      {
+        "id": "creator-3",
+        "title": "Interactive Stream Alert Kit",
+        "year": "2025",
+        "shortDesc": "Custom sound-reactive alerts, sub badges, and cheer effects",
+        "type": "Alert Package",
+        "image": "/portfolio-assets/creator/designer_desk.jpg"
+      }
+    ]
   }
 ]
