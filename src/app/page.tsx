@@ -455,7 +455,7 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden max-w-[1420px] mx-4 sm:mx-8 xl:mx-auto my-16 p-[58px] md:p-[74px]"
+        className="process relative overflow-hidden max-w-[1550px] mx-4 sm:mx-8 xl:mx-auto my-16 p-[100px] md:p-[140px]"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
