@@ -324,14 +324,16 @@ export default function Home() {
           <div className="about-content-wrapper">
             {/* Glassmorphic Story Box */}
             <motion.div
-              className="about-glass-box -m-4 sm:-m-8 p-12 sm:p-16 !max-w-[750px]"
+              className="about-glass-box relative -m-4 sm:-m-8 p-12 sm:p-16 !max-w-[750px]"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(9,9,11,0.7)_0%,_transparent_70%)] -z-10 blur-2xl pointer-events-none"></div>
+
               <div className="flex items-center justify-between mb-2">
-                  <p className="section-tag">MY STORY</p>
+                  <p className="section-tag drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">MY STORY</p>
                 {content.about.experienceYears && (
                   <span className="inline-flex items-center justify-center gap-2 relative text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase group whitespace-nowrap cursor-default">
                     <span className="relative z-10 flex items-center gap-2">
@@ -342,19 +344,19 @@ export default function Home() {
                   </span>
                 )}
               </div>
-              <h2 className="section-title">
+              <h2 className="section-title drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">
                 Frame by Frame.<br />Pixel by Pixel.
               </h2>
-              <div className="divider"></div>
+              <div className="divider drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]"></div>
 
               {content.about.bio && (
-                <p className="about-text font-medium text-cyan-200/90 mb-3 text-base sm:text-lg">
+                <p className="about-text font-medium text-cyan-200/90 mb-3 text-base sm:text-lg drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
                   I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don&apos;t just create visuals — I architect immersive brand ecosystems.
                 </p>
               )}
 
               {content.about.story.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="about-text">
+                <p key={index} className="about-text drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
                   {paragraph}
                 </p>
               ))}
@@ -442,12 +444,13 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden bg-zinc-950/60 border border-white/10 backdrop-blur-md rounded-[32px] max-w-[1400px] mx-4 sm:mx-8 xl:mx-auto my-16 p-12 md:p-16"
+        className="process relative overflow-hidden max-w-[1400px] mx-4 sm:mx-8 xl:mx-auto my-16 p-12 md:p-16"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
       >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(9,9,11,0.7)_0%,_transparent_70%)] -z-10 blur-2xl pointer-events-none"></div>
         {/* Optional Custom Process Background Image */}
         {content.process.bgImage && (
           <div className="absolute inset-0 z-0 w-full h-full pointer-events-none overflow-hidden opacity-20">
@@ -461,8 +464,8 @@ export default function Home() {
         )}
 
         <div className="relative z-10 w-full">
-          <p className="section-tag">MY PROCESS</p>
-          <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit']">
+          <p className="section-tag drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">MY PROCESS</p>
+          <h2 className="section-title text-3xl sm:text-4xl font-extrabold font-['Outfit'] drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">
             {content.process.sectionTitle || 'A Proven 4-Step Process'}
           </h2>
 
@@ -478,8 +481,8 @@ export default function Home() {
                     <i className={`ph ${iconClass}`}></i>
                   </div>
                   <div className="step-badge">{step.number || `0${idx + 1}`}</div>
-                  <h3 className="step-title">{step.title}</h3>
-                  <p>{step.description}</p>
+                  <h3 className="step-title drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">{step.title}</h3>
+                  <p className="drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">{step.description}</p>
                 </div>
               );
             })}
