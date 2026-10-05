@@ -349,7 +349,16 @@ export default function Home() {
               </h2>
               <div className="divider drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]"></div>
 
-              <div className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/5">
+              <div className="relative p-6 sm:p-8">
+                {/* Seamless Faded Blur Background */}
+                <div 
+                  className="absolute inset-0 bg-black/40 backdrop-blur-lg -z-10"
+                  style={{ 
+                    WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)', 
+                    maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)' 
+                  }}
+                ></div>
+
                 {content.about.bio && (
                   <p className="about-text font-medium text-cyan-200/90 mb-3 text-base sm:text-lg drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
                     I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don&apos;t just create visuals — I architect immersive brand ecosystems.
