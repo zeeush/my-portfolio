@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import fs from 'fs/promises';
+import path from 'path';
 
 interface Project {
   id: string;
@@ -21,11 +23,9 @@ interface Category {
 
 async function getPortfolioData(): Promise<Category[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/portfolio`, {
-      next: { revalidate: 60 } // or cache: 'no-store' if we want it fully dynamic without revalidate
-    });
-    if (!res.ok) return [];
-    return res.json();
+    const dataFilePath = path.join(process.cwd(), 'src', 'data', 'portfolio.json');
+    const data = await fs.readFile(dataFilePath, 'utf-8');
+    return JSON.parse(data);
   } catch {
     return [];
   }

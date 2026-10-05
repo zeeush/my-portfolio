@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Zeeshan | Senior Logo Designer & Brand Strategist",
   description: "Crafting Timeless Design & Brand Identities",
+  openGraph: {
+    title: "Zeeshan | Senior Logo Designer & Brand Strategist",
+    description: "Crafting Timeless Design & Brand Identities",
+  },
 };
 
 export default function RootLayout({
