@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Script from 'next/script';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -45,9 +45,9 @@ const DEFAULT_CONTENT: SiteContent = {
     bgImage: "/images/1stpage-bg.jpg",
   },
   about: {
-    bio: "I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don’t just design logos—I build immersive brand ecosystems.",
+    bio: "I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don't just design logos — I build immersive brand ecosystems.",
     experienceYears: "12+",
-    story: "My journey began over a decade ago in the high-pressure print houses of Varanasi, mastering CorelDRAW and layout architecture by executing everything from local branding collaterals to rebuilding an entire 66-page magazine under tight deadlines.\n\nAs media transitioned, I channeled that foundational discipline into modern digital storytelling, where my active experience in video editing, live streaming, and content creation sharpened my understanding of audience psychology, visual pacing, and retention. Today, by fusing traditional design mastery (Adobe Premiere Pro, CorelDRAW, Canva, CapCut) with cutting-edge AI workflows (Leonardo.ai, Gemini, ChatGPT, Claude, Kling AI), I deliver premium quality at unmatched speeds—bridging core design fundamentals with next-gen generative technology to engineer high-converting visual solutions that dominate competitive spaces.",
+    story: "My journey began over a decade ago in the high-pressure print houses of Varanasi, mastering CorelDRAW and layout architecture by executing everything from local branding collaterals to rebuilding an entire 66-page magazine under tight deadlines.\n\nAs media transitioned, I channeled that foundational discipline into modern digital storytelling, where my active experience in video editing, live streaming, and content creation sharpened my understanding of audience psychology, visual pacing, and retention. Today, by fusing traditional design mastery (Adobe Premiere Pro, CorelDRAW, Canva, CapCut) with cutting-edge AI workflows (Leonardo.ai, Gemini, ChatGPT, Claude, Kling AI), I deliver premium quality at unmatched speeds — bridging core design fundamentals with next-gen generative technology to engineer high-converting visual solutions that dominate competitive spaces.",
     skills: [
       "Brand Strategy",
       "Logo Design",
@@ -144,6 +144,16 @@ export default function Home() {
   const workGlowOpacity = useTransform(scrollYProgress, [0.15, 0.5, 0.8], [0.15, 0.6, 0.2]);
   const contactGlowOpacity = useTransform(scrollYProgress, [0.55, 0.85, 1], [0.1, 0.6, 0.8]);
 
+  // Dedicated scroll progress & exit transforms for About section
+  const aboutSectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: aboutScrollProgress } = useScroll({
+    target: aboutSectionRef,
+    offset: ["start end", "end start"],
+  });
+  const aboutBgParallaxY = useTransform(aboutScrollProgress, [0, 1], [-30, 30]);
+  const aboutExitOpacity = useTransform(aboutScrollProgress, [0.1, 0.22, 0.78, 0.96], [0.25, 1, 1, 0.15]);
+  const aboutExitY = useTransform(aboutScrollProgress, [0.75, 1], [0, -50]);
+
   return (
     <main className="relative min-h-screen text-slate-100 overflow-x-hidden">
       {/* Ambient Lighting Orbs (Non-blocking) */}
@@ -170,7 +180,7 @@ export default function Home() {
       {/* ================= 1. HERO SECTION ================= */}
       <motion.section
         id="home"
-        className="hero relative min-h-[92vh] sm:min-h-screen flex items-center overflow-hidden pt-24 sm:pt-28 md:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 md:px-10 lg:px-12"
+        className="hero relative min-h-[100dvh] flex flex-col justify-start md:justify-center overflow-hidden pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-20 sm:pb-28 md:pb-36 px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -190,11 +200,10 @@ export default function Home() {
         )}
 
         <div
-          style={{ minHeight: '665.016px' }}
-          className="hero-container relative z-10 w-full max-w-6xl mx-auto px-0 sm:px-2 min-h-[665px]"
+          className="hero-container relative z-10 w-full max-w-6xl mx-auto px-0 sm:px-2 pt-4 sm:pt-6 md:pt-0"
         >
           <div className="hero-content max-w-2xl text-center md:text-left mx-auto md:mx-0">
-            <p className="hero-subtitle text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 mb-3">
+            <p className="hero-subtitle text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 mb-3 pt-2 sm:pt-1">
               BRAND STRATEGIST • AI & MULTIMEDIA DESIGNER
             </p>
             <h1 className="hero-title text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black font-['Outfit'] tracking-tight leading-[1.12] mb-4 sm:mb-5">
@@ -306,38 +315,52 @@ export default function Home() {
 
       {/* ================= 2. ABOUT SECTION ================= */}
       <motion.section
+        ref={aboutSectionRef}
         id="about"
-        className="about relative overflow-hidden"
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        style={{ opacity: aboutExitOpacity, y: aboutExitY }}
+        className="about relative overflow-hidden w-full my-16 sm:my-24 md:my-32 scroll-mt-24 sm:scroll-mt-28"
       >
-        {/* Optional Custom About Background Image */}
-        {content.about.bgImage && (
-          <div className="absolute inset-0 z-0 w-full h-full pointer-events-none overflow-hidden opacity-20">
-            <img
-              src={content.about.bgImage}
-              alt="About Background"
+        <div
+          className="about-container relative z-10 w-full min-h-[850px] lg:min-h-screen py-16 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 flex items-center overflow-hidden"
+        >
+          {/* 1. Cinematic Background Image (Room & Designer at computer) - Enters FIRST */}
+          <motion.div
+            className="about-bg-media absolute inset-0 z-0 w-full h-full pointer-events-none overflow-hidden"
+            initial={{ opacity: 0, scale: 1.15, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.img
+              src={content.about.bgImage || "/assets/story_designer.png"}
+              alt="Designer Studio Workspace"
+              style={{ y: aboutBgParallaxY }}
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#050508] via-[#050508]/60 to-[#050508]" />
-          </div>
-        )}
+            {/* Atmospheric gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#050508]/60 via-transparent to-[#050508]/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050508]/15 via-transparent to-[#050508]/25 pointer-events-none" />
+          </motion.div>
 
-        <div className="about-container relative z-10 px-4 py-16 sm:px-8 sm:py-24 md:px-12 w-full">
-          <div className="about-content-wrapper">
-            {/* Glassmorphic Story Box */}
+          <div className="about-content-wrapper w-full flex flex-col items-center lg:items-end relative z-10">
+            {/* 2. Glassmorphic Story Box (Right Positioned with Exact User Sizing: 700px w x 800px h, mr: 79px) */}
             <motion.div
-              className="about-glass-box relative w-full lg:w-1/2 lg:ml-auto !max-w-none"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15 }}
+              className="about-glass-box relative w-full max-w-xl md:max-w-2xl lg:max-w-[700px] lg:w-[700px] lg:h-[800px] lg:ml-auto lg:mr-[79px] z-10"
+              initial={{ opacity: 0, x: 45, y: 15, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(9,9,11,0.7)_0%,_transparent_70%)] -z-10 blur-2xl pointer-events-none"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,229,255,0.04)_0%,_transparent_70%)] -z-10 blur-xl pointer-events-none"></div>
 
-              <div className="flex items-center justify-between mb-2">
+              {/* Tag & Experience */}
+              <motion.div
+                className="flex items-center justify-between mb-2"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.55, delay: 0.44 }}
+              >
                 <p className="section-tag drop-shadow-[0_0_20px_rgba(8,145,178,0.6)]">MY STORY</p>
                 {content.about.experienceYears && (
                   <span className="inline-flex items-center justify-center gap-2 relative text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase group whitespace-nowrap cursor-default">
@@ -348,77 +371,138 @@ export default function Home() {
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-cyan-400 group-hover:w-full transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]"></span>
                   </span>
                 )}
-              </div>
-              <h2 className="section-title text-2xl sm:text-3xl md:text-4xl font-extrabold font-['Outfit'] drop-shadow-[0_0_20px_rgba(8,145,178,0.6)] leading-tight mb-3">
-                Frame by Frame.<br />Pixel by Pixel.
-              </h2>
-              <div className="divider drop-shadow-[0_0_20px_rgba(8,145,178,0.6)] mb-5"></div>
+              </motion.div>
 
-              <div className="relative mb-4 sm:mb-6">
+              {/* Title */}
+              <motion.h2
+                className="section-title text-2xl sm:text-3xl md:text-4xl font-extrabold font-['Outfit'] drop-shadow-[0_0_20px_rgba(8,145,178,0.6)] leading-tight mb-3"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.6, delay: 0.52 }}
+              >
+                Frame by Frame.<br />Pixel by Pixel.
+              </motion.h2>
+
+              {/* Divider */}
+              <motion.div
+                className="divider drop-shadow-[0_0_20px_rgba(8,145,178,0.6)] mb-4"
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: 0.58 }}
+              />
+
+              {/* Story Narrative Text with Light Frosted Blur Box */}
+              <motion.div
+                className="relative mb-4 sm:mb-5 p-4 sm:p-5 rounded-2xl bg-black/15 border border-white/[0.08] backdrop-blur-[4px] space-y-3 shadow-sm"
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.7, delay: 0.64 }}
+              >
                 {content.about.bio && (
-                  <p className="about-text font-semibold text-cyan-200/95 mb-3 text-sm sm:text-base md:text-lg drop-shadow-[0_4px_12px_rgba(0,0,0,1)] leading-relaxed">
-                    I am Zeeshan, a Senior Brand Strategist and Multimedia Designer. I don&apos;t just create visuals — I architect immersive brand ecosystems.
+                  <p className="about-text font-semibold text-cyan-200 text-sm sm:text-base leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)] !mb-0">
+                    {content.about.bio}
                   </p>
                 )}
 
                 {content.about.story.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="about-text drop-shadow-[0_4px_12px_rgba(0,0,0,1)] text-xs sm:text-sm md:text-base leading-relaxed text-zinc-300 mb-3 last:mb-0">
+                  <p key={index} className="about-text text-xs sm:text-sm md:text-base leading-relaxed text-zinc-100 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)] last:mb-0 !mb-0">
                     {paragraph}
                   </p>
                 ))}
-              </div>
+              </motion.div>
 
-              {/* Skills Tags Pills */}
+              {/* Floating Capabilities & Toolchain */}
               {content.about.skills && content.about.skills.length > 0 && (
-                <div className="pt-5 mt-5 border-t border-transparent relative">
-                  <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
-                  <p className="text-sm sm:text-base md:text-lg font-bold uppercase font-mono tracking-widest text-cyan-400 mb-4 text-center sm:text-left">
-                    Core Expertise & Toolchain
-                  </p>
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3 justify-center sm:justify-start pb-2">
+                <motion.div
+                  className="pt-4 mt-4 border-t border-white/[0.08] relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.74 }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <p className="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400/90">
+                      Core Capabilities
+                    </p>
+                  </div>
+                  
+                  {/* Floating Kinetic Text Badges (Mobile, Tablet & Desktop) */}
+                  <div className="flex flex-wrap gap-2 justify-start items-center pb-2">
                     {content.about.skills.map((skill, idx) => (
-                      <span
+                      <motion.span
                         key={idx}
-                        className="inline-flex items-center justify-center gap-2 relative text-cyan-400 font-mono text-[11px] sm:text-xs md:text-sm font-bold tracking-wider group whitespace-nowrap cursor-default py-1 px-2 rounded-lg bg-cyan-950/20 border border-cyan-500/20"
+                        initial={{ opacity: 0, scale: 0.75 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: false, amount: 0.15 }}
+                        transition={{ duration: 0.45, delay: 0.78 + (idx * 0.03) }}
+                        animate={{
+                          y: idx % 2 === 0 ? [-3, 3, -3] : [3, -3, 3],
+                        }}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.03] hover:bg-cyan-950/30 border border-white/[0.08] hover:border-cyan-400/40 text-[10px] sm:text-xs font-mono text-zinc-300 hover:text-cyan-200 transition-colors backdrop-blur-sm cursor-default shadow-sm"
                       >
-                        <span className="relative z-10 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                          {skill}
-                        </span>
-                      </span>
+                        <span className="w-1 h-1 rounded-full bg-cyan-400/80" />
+                        <span>{skill}</span>
+                      </motion.span>
                     ))}
                   </div>
 
-                  {/* Responsive Toolchain Icon Badges for Mobile & Tablet */}
-                  <div className="lg:hidden mt-6 pt-4 border-t border-white/10">
-                    <p className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 mb-3 text-center sm:text-left">
-                      Creative Suites & AI Engines:
+                  {/* Mobile & Tablet Floating Tool Badges (Animated Floating Stream) */}
+                  <div className="lg:hidden mt-4 pt-3 border-t border-white/[0.06]">
+                    <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-wider text-zinc-400 mb-2.5 flex items-center gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-purple-400 animate-pulse" />
+                      <span>Creative & AI Engines:</span>
                     </p>
-                    <div className="grid grid-cols-5 sm:grid-cols-5 gap-2.5 sm:gap-3">
-                      {floatingTools.map((tool) => (
-                        <div
+                    <div className="flex flex-wrap gap-2 justify-start items-center">
+                      {floatingTools.map((tool, tIdx) => (
+                        <motion.div
                           key={tool.name}
-                          className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-zinc-900/80 border border-white/10 hover:border-cyan-400/50 transition-all text-center"
+                          initial={{ opacity: 0, scale: 0.7, y: 15 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          viewport={{ once: false, amount: 0.15 }}
+                          transition={{ duration: 0.5, delay: 0.82 + (tIdx * 0.04) }}
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-900/70 border border-white/10 hover:border-cyan-400/40 backdrop-blur-md transition-all shadow-sm"
                         >
-                          <img src={tool.img} alt={tool.name} className="w-6 h-6 sm:w-8 sm:h-8 object-contain" />
-                          <span className="text-[9px] sm:text-[10px] font-mono text-zinc-300 font-medium truncate w-full text-center">
+                          <img
+                            src={tool.img}
+                            alt={tool.name}
+                            className="w-3.5 h-3.5 object-contain"
+                            referrerPolicy="no-referrer"
+                          />
+                          <span className="text-[10px] font-mono text-zinc-300 font-medium whitespace-nowrap">
                             {tool.name}
                           </span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )}
             </motion.div>
 
-            {/* Desktop Floating Tool Badges */}
+            {/* 3. Desktop Floating Tool Badges (Animate In & Settle) */}
             <div className="floating-logos hidden lg:block">
-              {floatingTools.map((tool) => (
-                <div key={tool.name} className={`float-logo ${tool.className}`}>
-                  <img src={tool.img} alt={tool.name} />
-                  <span className="tool-name">{tool.name}</span>
-                </div>
+              {floatingTools.map((tool, idx) => (
+                <motion.div
+                  key={tool.name}
+                  className={`float-logo-item ${tool.className}`}
+                  initial={{ opacity: 0, scale: 0.3, y: 35 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{
+                    duration: 0.65,
+                    delay: 0.22 + (idx * 0.05),
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <div className="float-logo">
+                    <img src={tool.img} alt={tool.name} />
+                    <span className="tool-name">{tool.name}</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -428,11 +512,11 @@ export default function Home() {
       {/* ================= 3. FEATURED WORK / SHOWCASE SECTION ================= */}
       <motion.section
         id="work"
-        className="portfolio relative overflow-hidden py-16 sm:py-24 px-4 sm:px-6 md:px-10 lg:px-12 w-full"
-        initial={{ opacity: 0, y: 25 }}
+        className="portfolio relative overflow-hidden py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 lg:px-12 w-full my-24 sm:my-32 md:my-40 lg:my-48 scroll-mt-24 sm:scroll-mt-28"
+        initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Optional Custom Work Background Image */}
         {content.work.bgImage && (
@@ -472,11 +556,11 @@ export default function Home() {
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden max-w-6xl mx-4 sm:mx-6 md:mx-8 xl:mx-auto my-12 sm:my-16 p-6 sm:p-10 md:p-14 lg:p-16 rounded-3xl"
-        initial={{ opacity: 0, y: 25 }}
+        className="process relative overflow-hidden max-w-6xl mx-4 sm:mx-6 md:mx-8 xl:mx-auto my-24 sm:my-32 md:my-40 lg:my-48 p-6 sm:p-10 md:p-14 lg:p-16 rounded-3xl scroll-mt-24 sm:scroll-mt-28"
+        initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(9,9,11,0.7)_0%,_transparent_70%)] -z-10 blur-2xl pointer-events-none"></div>
         {/* Optional Custom Process Background Image */}
@@ -519,10 +603,14 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* ================= 5. CONTACT & FOOTER SECTION ================= */}
-      <section
+      {/* ================= 5. CONTACT & FOOTER SECTION (WITH SPACED CLEARANCE GAP) ================= */}
+      <motion.section
         id="contact"
-        className="relative w-full overflow-hidden flex flex-col justify-between items-center pt-10 sm:pt-16 md:pt-20 pb-0"
+        className="relative w-full overflow-hidden flex flex-col justify-between items-center pt-24 sm:pt-32 md:pt-40 pb-0 mt-24 sm:mt-32 md:mt-40 lg:mt-48 scroll-mt-24 sm:scroll-mt-28 min-h-[90vh]"
+        initial={{ opacity: 0, y: 45 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Full-Bleed Mobile Contact Background Layer (Mobile Only: block md:hidden) */}
         <div className="block md:hidden absolute inset-0 z-0 w-full h-full min-h-[100dvh] pointer-events-none overflow-hidden">
@@ -541,7 +629,7 @@ export default function Home() {
 
         {/* Global Footer Bar (Pinned at bottom of Contact Section) */}
         <Footer />
-      </section>
+      </motion.section>
 
       {/* Script for Phosphor Icons */}
       <Script src="https://unpkg.com/@phosphor-icons/web" strategy="lazyOnload" />
