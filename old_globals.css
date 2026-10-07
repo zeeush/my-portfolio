@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
-@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css');
-@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css');
-@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css');
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -106,7 +103,7 @@ body.lightbox-open header {
     }
 }
 
-/* Mobile menu animation — used as fallback when tailwindcss-animate is unavailable */
+/* Mobile menu animation ÔÇö used as fallback when tailwindcss-animate is unavailable */
 .mobile-menu-animate {
     animation: slideInFromTop 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
