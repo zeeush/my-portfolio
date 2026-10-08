@@ -8,6 +8,7 @@ import WorkSection from '@/components/WorkSection';
 import Navbar from '@/components/Navbar';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import SectionDivider from '@/components/SectionDivider';
 
 interface SiteContent {
   home: {
@@ -26,6 +27,7 @@ interface SiteContent {
   };
   work: {
     sectionTitle: string;
+    sectionTagline?: string;
     sectionSubtitle: string;
     bgImage?: string;
   };
@@ -65,6 +67,7 @@ const DEFAULT_CONTENT: SiteContent = {
   },
   work: {
     sectionTitle: "Selected Works",
+    sectionTagline: "Curated brand systems, digital assets, and high-impact visual design engineered across print, screen, and AI ecosystems.",
     sectionSubtitle: "10000+ successful projects delivered across tech, gaming, finance, lifestyle & enterprise brands.",
     bgImage: "/uploads/work_bg_1790335357662.jpg",
   },
@@ -155,7 +158,7 @@ export default function Home() {
   const aboutExitY = useTransform(aboutScrollProgress, [0.75, 1], [0, -50]);
 
   return (
-    <main className="relative min-h-screen text-slate-100 overflow-x-hidden">
+    <main className="relative min-h-screen text-slate-100 overflow-x-clip snap-y snap-proximity">
       {/* Ambient Lighting Orbs (Non-blocking) */}
       <div className="fixed inset-0 -z-40 pointer-events-none overflow-hidden">
         {/* Top/Hero Ambient Glow */}
@@ -180,7 +183,7 @@ export default function Home() {
       {/* ================= 1. HERO SECTION ================= */}
       <motion.section
         id="home"
-        className="hero relative min-h-[100dvh] flex flex-col justify-start md:justify-center overflow-hidden pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-20 sm:pb-28 md:pb-36 px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-24"
+        className="hero snap-start snap-always relative min-h-[100dvh] flex flex-col justify-start md:justify-center overflow-hidden pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-20 sm:pb-28 md:pb-36 px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -313,12 +316,15 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Decorative Divider: Hero -> About */}
+      <SectionDivider accent="cyan" />
+
       {/* ================= 2. ABOUT SECTION ================= */}
       <motion.section
         ref={aboutSectionRef}
         id="about"
         style={{ opacity: aboutExitOpacity, y: aboutExitY }}
-        className="about relative overflow-hidden w-full my-16 sm:my-24 md:my-32 scroll-mt-24 sm:scroll-mt-28"
+        className="about snap-start relative overflow-hidden w-full my-16 sm:my-24 md:my-32 scroll-mt-16 sm:scroll-mt-20"
       >
         <div
           className="about-container relative z-10 w-full min-h-[850px] lg:min-h-screen py-16 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 flex items-center overflow-hidden"
@@ -509,10 +515,13 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Decorative Divider: About -> Work */}
+      <SectionDivider accent="purple" />
+
       {/* ================= 3. FEATURED WORK / SHOWCASE SECTION ================= */}
       <motion.section
         id="work"
-        className="portfolio relative overflow-hidden py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 lg:px-12 w-full my-24 sm:my-32 md:my-40 lg:my-48 scroll-mt-24 sm:scroll-mt-28"
+        className="portfolio snap-start relative overflow-hidden py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-10 lg:px-12 w-full my-24 sm:my-32 md:my-40 lg:my-48 scroll-mt-16 sm:scroll-mt-20"
         initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
@@ -530,14 +539,28 @@ export default function Home() {
           </div>
         )}
 
-        <div className="portfolio-header relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
-          <div>
-            <p className="section-tag mb-1">FEATURED WORK</p>
-            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl font-extrabold font-['Outfit']">
-              {content.work.sectionTitle || 'Showcase'}
+        <div className="portfolio-header relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-12">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/20 mb-3 shadow-[0_0_15px_rgba(0,229,255,0.08)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#00e5ff]" />
+              <p className="text-[11px] font-mono tracking-wider font-semibold uppercase text-cyan-300">
+                PORTFOLIO SHOWCASE
+              </p>
+            </div>
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-['Outfit'] tracking-tight text-white">
+              <span className="bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+                {content.work.sectionTitle || 'Selected Works'}
+              </span>
             </h2>
+            <p className="mt-2.5 text-sm sm:text-base text-zinc-400 font-light leading-relaxed max-w-xl">
+              {content.work.sectionTagline ||
+                'Curated brand systems, digital assets, and high-impact visual design engineered across print, screen, and AI ecosystems.'}
+            </p>
           </div>
-          <Link href="/showcase/logo" className="btn btn-secondary w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-bold tracking-wide flex items-center justify-center gap-2.5 min-h-[48px]">
+          <Link
+            href="/showcase/logo"
+            className="btn btn-secondary w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-bold tracking-wide flex items-center justify-center gap-2.5 min-h-[48px] self-start sm:self-end shrink-0 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,229,255,0.25)] transition-all"
+          >
             <span>Explore 3D Showcase</span>
             <i className="ph ph-arrow-right text-base"></i>
           </Link>
@@ -553,10 +576,13 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Decorative Divider: Work -> Process */}
+      <SectionDivider accent="amber" />
+
       {/* ================= 4. PROCESS SECTION ================= */}
       <motion.section
         id="process"
-        className="process relative overflow-hidden max-w-6xl mx-4 sm:mx-6 md:mx-8 xl:mx-auto my-24 sm:my-32 md:my-40 lg:my-48 p-6 sm:p-10 md:p-14 lg:p-16 rounded-3xl scroll-mt-24 sm:scroll-mt-28"
+        className="process snap-start relative overflow-hidden max-w-6xl mx-4 sm:mx-6 md:mx-8 xl:mx-auto my-24 sm:my-32 md:my-40 lg:my-48 p-6 sm:p-10 md:p-14 lg:p-16 rounded-3xl scroll-mt-16 sm:scroll-mt-20"
         initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
@@ -603,10 +629,13 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Decorative Divider: Process -> Contact */}
+      <SectionDivider accent="cyan" />
+
       {/* ================= 5. CONTACT & FOOTER SECTION (WITH SPACED CLEARANCE GAP) ================= */}
       <motion.section
         id="contact"
-        className="relative w-full overflow-hidden flex flex-col justify-between items-center pt-24 sm:pt-32 md:pt-40 pb-0 mt-24 sm:mt-32 md:mt-40 lg:mt-48 scroll-mt-24 sm:scroll-mt-28 min-h-[90vh]"
+        className="snap-start relative w-full overflow-hidden flex flex-col justify-between items-center pt-24 sm:pt-32 md:pt-40 pb-0 mt-24 sm:mt-32 md:mt-40 lg:mt-48 scroll-mt-16 sm:scroll-mt-20 min-h-[90vh]"
         initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}

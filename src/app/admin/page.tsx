@@ -22,6 +22,7 @@ interface SiteContent {
   };
   work: {
     sectionTitle: string;
+    sectionTagline?: string;
     sectionSubtitle: string;
     bgImage?: string;
   };
@@ -1263,6 +1264,24 @@ export default function AdminPage() {
                           }));
                           setHasUnsavedChanges(true);
                         }}
+                        className="w-full px-4.5 py-3 bg-zinc-900 border border-zinc-700/80 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-400 font-medium uppercase tracking-wider mb-2 block">
+                        Section Tagline / Descriptive Subheading
+                      </label>
+                      <input
+                        type="text"
+                        value={content.work.sectionTagline || ''}
+                        onChange={(e) => {
+                          setContent((prev) => ({
+                            ...prev,
+                            work: { ...prev.work, sectionTagline: e.target.value },
+                          }));
+                          setHasUnsavedChanges(true);
+                        }}
+                        placeholder="Curated brand systems, digital assets, and high-impact visual design..."
                         className="w-full px-4.5 py-3 bg-zinc-900 border border-zinc-700/80 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
                       />
                     </div>

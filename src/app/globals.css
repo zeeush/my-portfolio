@@ -29,13 +29,42 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 3.5rem;
     background-color: #050508;
     color: #f8fafc;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
-section[id] {
-    scroll-margin-top: 5.5rem;
+@supports not (overflow-x: clip) {
+    html {
+        overflow-x: hidden;
+    }
+}
+
+/* Section elements CSS scroll snapping */
+section[id],
+main > section,
+.snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scroll-margin-top: 3.5rem;
+}
+
+section#home {
+    scroll-margin-top: 0;
+    scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+    html {
+        scroll-padding-top: 4rem;
+    }
+
+    section[id]:not(#home),
+    main > section:not(#home) {
+        scroll-margin-top: 4rem;
+    }
 }
 
 body {
@@ -43,11 +72,17 @@ body {
     color: var(--text-main);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100vh;
     margin: 0;
     padding: 0;
     position: relative;
+}
+
+@supports not (overflow-x: clip) {
+    body {
+        overflow-x: hidden;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1090,5 +1125,34 @@ footer {
         font-size: 1.85rem !important;
         line-height: 1.2 !important;
     }
+}
+
+/* Custom scrollbar & no-scrollbar utility classes */
+.no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+.no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* Designed ultra-sleek cyber sliding bar */
+.custom-slide-bar::-webkit-scrollbar {
+    height: 3px !important;
+}
+.custom-slide-bar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 9999px !important;
+}
+.custom-slide-bar::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #00e5ff, #3b82f6) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8) !important;
+}
+.custom-slide-bar {
+    scrollbar-width: thin !important;
+    scrollbar-color: #00e5ff rgba(255, 255, 255, 0.05) !important;
 }
 

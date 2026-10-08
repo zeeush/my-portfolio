@@ -34,6 +34,7 @@ const DEFAULT_CONTENT = {
   },
   work: {
     sectionTitle: "Selected Works",
+    sectionTagline: "Curated brand systems, digital assets, and high-impact visual design engineered across print, screen, and AI ecosystems.",
     sectionSubtitle: "10000+ successful projects delivered across tech, gaming, finance, lifestyle & enterprise brands.",
     bgImage: ""
   },
