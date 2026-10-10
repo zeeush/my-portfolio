@@ -7,8 +7,10 @@ export interface InquiryRecord {
   id: string;
   fullName: string;
   email: string;
+  phone?: string;
   companyName: string;
   timeline: string;
+  budget?: string;
   services: string[];
   projectDetails: string;
   referenceLinks?: string;
@@ -69,8 +71,10 @@ export async function POST(request: Request) {
     const {
       fullName,
       email,
+      phone,
       companyName,
       timeline,
+      budget,
       services,
       projectDetails,
       referenceLinks,
@@ -87,8 +91,10 @@ export async function POST(request: Request) {
       id: `inq_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
       fullName: String(fullName).trim(),
       email: String(email).trim(),
+      phone: phone ? String(phone).trim() : '',
       companyName: companyName ? String(companyName).trim() : 'Independent / Not specified',
       timeline: timeline ? String(timeline).trim() : 'Flexible',
+      budget: budget ? String(budget).trim() : 'Flexible',
       services: Array.isArray(services) ? services : [],
       projectDetails: String(projectDetails).trim(),
       referenceLinks: referenceLinks ? String(referenceLinks).trim() : '',

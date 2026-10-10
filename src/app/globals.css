@@ -3,6 +3,7 @@
 @import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css');
 @import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
     --bg-dark: #050508;
@@ -108,16 +109,6 @@ body::after {
     pointer-events: none;
 }
 
-/* Lightbox Active - Smooth Header Slide Out & Fade */
-header {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-body.lightbox-open header {
-    transform: translateY(-100%) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
 
 
 @keyframes smoke {
@@ -1154,5 +1145,107 @@ footer {
 .custom-slide-bar {
     scrollbar-width: thin !important;
     scrollbar-color: #00e5ff rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ================= PORTFOLIO ADMIN LIGHT / DARK THEME ================= */
+.admin-theme.dark {
+    background-color: #020617 !important;
+    color: #f1f5f9 !important;
+}
+.admin-theme.dark .bg-white {
+    background-color: #0f172a !important;
+}
+.admin-theme.dark .bg-slate-50 {
+    background-color: #0b1120 !important;
+}
+.admin-theme.dark .bg-slate-100 {
+    background-color: #1e293b !important;
+}
+.admin-theme.dark .border-slate-200,
+.admin-theme.dark .border-slate-100 {
+    border-color: #1e293b !important;
+}
+.admin-theme.dark .border-slate-300 {
+    border-color: #334155 !important;
+}
+.admin-theme.dark .text-slate-900 {
+    color: #f8fafc !important;
+}
+.admin-theme.dark .text-slate-800 {
+    color: #e2e8f0 !important;
+}
+.admin-theme.dark .text-slate-700 {
+    color: #cbd5e1 !important;
+}
+.admin-theme.dark .text-slate-600 {
+    color: #94a3b8 !important;
+}
+.admin-theme.dark .text-slate-500 {
+    color: #94a3b8 !important;
+}
+.admin-theme.dark .hover\:bg-slate-50:hover {
+    background-color: #1e293b !important;
+}
+.admin-theme.dark .hover\:bg-slate-100:hover {
+    background-color: #334155 !important;
+}
+.admin-theme.dark input:not([type="checkbox"]):not([type="radio"]),
+.admin-theme.dark textarea,
+.admin-theme.dark select {
+    background-color: #090d16 !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+.admin-theme.dark input::placeholder,
+.admin-theme.dark textarea::placeholder {
+    color: #64748b !important;
+}
+.admin-theme.dark .bg-blue-50 {
+    background-color: rgba(37, 99, 235, 0.16) !important;
+}
+.admin-theme.dark .text-blue-700 {
+    color: #60a5fa !important;
+}
+.admin-theme.dark .border-blue-200 {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+.admin-theme.dark .bg-emerald-50 {
+    background-color: rgba(16, 185, 129, 0.16) !important;
+}
+.admin-theme.dark .text-emerald-700,
+.admin-theme.dark .text-emerald-800 {
+    color: #34d399 !important;
+}
+.admin-theme.dark .border-emerald-200 {
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.admin-theme.dark .bg-amber-50 {
+    background-color: rgba(245, 158, 11, 0.16) !important;
+}
+.admin-theme.dark .text-amber-800 {
+    color: #fbbf24 !important;
+}
+.admin-theme.dark .border-amber-200 {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+}
+.admin-theme.dark .bg-red-50,
+.admin-theme.dark .bg-rose-50 {
+    background-color: rgba(239, 68, 68, 0.16) !important;
+}
+.admin-theme.dark .text-red-700,
+.admin-theme.dark .text-rose-800,
+.admin-theme.dark .text-rose-600 {
+    color: #f87171 !important;
+}
+.admin-theme.dark .border-red-200,
+.admin-theme.dark .border-rose-200 {
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+.admin-theme.dark .shadow-2xs,
+.admin-theme.dark .shadow-sm,
+.admin-theme.dark .shadow-md,
+.admin-theme.dark .shadow-lg,
+.admin-theme.dark .shadow-xl {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5) !important;
 }
 

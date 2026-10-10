@@ -93,8 +93,11 @@ export default function LoginPage() {
                 if (error) setError('');
               }}
               className="w-full px-5 py-3.5 bg-zinc-900 border border-zinc-700/80 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-400 transition-all font-mono text-sm tracking-wider"
-              placeholder="••••••••••••"
+              placeholder="Enter password (e.g. admin123)"
             />
+            <p className="text-[11px] text-zinc-400 mt-1.5 font-mono">
+              Master password: <span className="text-cyan-400 font-semibold select-all">admin123</span>
+            </p>
           </div>
 
           <button

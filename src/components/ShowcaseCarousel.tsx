@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ProjectItem, projectsData } from '@/data/projects';
 
 interface ShowcaseCarouselProps {
@@ -12,7 +12,6 @@ interface ShowcaseCarouselProps {
 
 export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [dynamicItems, setDynamicItems] = useState<ProjectItem[]>([]);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const router = useRouter();
@@ -70,34 +69,15 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
     setCurrentIndex((prev) => (prev - 1 + (items.length || 1)) % (items.length || 1));
   }, [items.length]);
 
-  // Lock body scroll and smoothly hide site header when lightbox is active
-  useEffect(() => {
-    if (isLightboxOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.classList.add('lightbox-open');
-    } else {
-      document.body.style.overflow = '';
-      document.body.classList.remove('lightbox-open');
-    }
-    return () => {
-      document.body.style.overflow = '';
-      document.body.classList.remove('lightbox-open');
-    };
-  }, [isLightboxOpen]);
-
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isLightboxOpen) {
-        setIsLightboxOpen(false);
-        return;
-      }
       if (e.key === 'ArrowRight') nextSlide();
       if (e.key === 'ArrowLeft') prevSlide();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isLightboxOpen, nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide]);
 
   // Touch / Swipe Navigation Handlers
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -118,11 +98,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
 
   // Back Navigation Handler
   const handleBackNavigation = () => {
-    if (isLightboxOpen) {
-      setIsLightboxOpen(false);
-    } else {
-      router.push('/#work');
-    }
+    router.push('/#work');
   };
 
   const activeItem = items[currentIndex] || items[0] || {
@@ -245,9 +221,7 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                   transformStyle: 'preserve-3d',
                 }}
                 onClick={() => {
-                  if (isCenter) {
-                    setIsLightboxOpen(true);
-                  } else {
+                  if (!isCenter) {
                     setCurrentIndex(index);
                   }
                 }}
@@ -264,24 +238,9 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
                     className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   />
 
-                  {/* 1. Subtle 40% Black Dark Overlay on Hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
-
-                  {/* 1. Centered Magnifying-Glass Icon & 'Click to Expand' Fade-In on Hover */}
-                  {isCenter && (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                      <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black/80 border border-cyan-400/60 text-cyan-300 text-xs sm:text-sm font-mono font-bold tracking-wider uppercase shadow-[0_0_25px_rgba(0,229,255,0.5)] backdrop-blur-sm">
-                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                        </svg>
-                        <span>Click to Expand</span>
-                      </div>
-                    </div>
-                  )}
-
                   {/* Side Card Glass Darkening Overlay */}
                   {!isCenter && (
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-[0.5px]"></div>
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-[0.5px]" />
                   )}
                 </div>
               </motion.div>
@@ -371,126 +330,6 @@ export default function ShowcaseCarousel({ category }: ShowcaseCarouselProps) {
           Image {currentIndex + 1} of {total}
         </span>
       </div>
-
-      {/* ================= 4. FULL-SCREEN EXPAND (LIGHTBOX) VIEW ================= */}
-      <AnimatePresence>
-        {isLightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[9999] w-screen h-screen bg-black/80 backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-6 select-none overflow-hidden"
-            onClick={() => setIsLightboxOpen(false)}
-          >
-            {/* Ambient Lighting Glows */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-
-            {/* 1 & 2 & 3. Fixed Top-Right Close Button ('✕' Icon, z-[10000] Above All Headers, Semi-Transparent 50%) */}
-            <button
-              onClick={() => setIsLightboxOpen(false)}
-              aria-label="Close fullscreen view"
-              className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[10000] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
-              title="Close (Esc)"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* 2 & 3. Circular Navigation Arrows (Left / Right, 50% Semi-Transparent) */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                prevSlide();
-              }}
-              aria-label="Previous image"
-              className="fixed left-2 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 sm:w-12 sm:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                nextSlide();
-              }}
-              aria-label="Next image"
-              className="fixed right-2 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 sm:w-12 sm:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-2xl hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Main Stage Artwork (Scaled to fit viewport without cropping) */}
-            <div
-              className="relative flex-1 w-full flex items-center justify-center my-auto min-h-0 pt-10 sm:pt-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeItem.id || currentIndex}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="relative flex items-center justify-center max-h-[62vh] sm:max-h-[66vh] w-auto max-w-[90vw]"
-                  onTouchStart={handleTouchStart}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  <img
-                    src={activeItem.imageUrl}
-                    alt={activeItem.title}
-                    className="max-h-[62vh] sm:max-h-[66vh] w-auto max-w-[90vw] object-contain rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-white/10"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Project Details & Horizontal Thumbnails Strip Below Main Image (Clean Background - No Box) */}
-            <div
-              className="w-full max-w-3xl mx-auto flex flex-col items-center gap-3 z-40 pb-3"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Clean Typography Hierarchy (No Box) */}
-              <div className="flex flex-col items-center text-center gap-1 px-4">
-                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-wide font-['Outfit',sans-serif]">
-                  {activeItem.title}
-                </h4>
-                <p className="text-xs sm:text-sm font-medium text-zinc-400 uppercase tracking-widest font-mono">
-                  {activeItem.tagline}
-                </p>
-                <span className="text-xs font-mono text-zinc-500 mt-0.5">
-                  Image {currentIndex + 1} of {total}
-                </span>
-              </div>
-
-              {/* Horizontal Thumbnail Jump Strip */}
-              <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto py-1 px-4 max-w-full scrollbar-none">
-                {items.map((it, idx) => (
-                  <button
-                    key={it.id || idx}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`relative w-16 h-11 sm:w-20 sm:h-14 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer transition-all duration-200 ${idx === currentIndex
-                        ? 'border-2 border-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.7)] opacity-100 scale-105'
-                        : 'border border-white/20 opacity-50 hover:opacity-90 hover:scale-100'
-                      }`}
-                    aria-label={`Jump to image ${idx + 1}`}
-                  >
-                    <img src={it.imageUrl} alt={it.title} className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-          </motion.div>
-        )}
-      </AnimatePresence>
-
     </div>
   );
 }

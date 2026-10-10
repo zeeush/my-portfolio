@@ -20,6 +20,56 @@ export interface ProjectRecord {
 }
 
 const dataFilePath = path.join(process.cwd(), 'data', 'projects.json');
+const portfolioFilePath = path.join(process.cwd(), 'src', 'data', 'portfolio.json');
+
+function syncToPortfolio(projects: ProjectRecord[]) {
+  try {
+    if (!fs.existsSync(portfolioFilePath)) return;
+    const raw = fs.readFileSync(portfolioFilePath, 'utf-8');
+    const categories = JSON.parse(raw);
+    if (!Array.isArray(categories)) return;
+
+    // Group projects by category
+    const byCategory: Record<string, ProjectRecord[]> = {};
+    for (const p of projects) {
+      const cat = p.category || p.folderSlug || 'logo';
+      if (!byCategory[cat]) byCategory[cat] = [];
+      byCategory[cat].push(p);
+    }
+
+    interface CategoryItem {
+      id: string;
+      slug: string;
+      title: string;
+      description: string;
+      coverImage: string;
+      projects?: unknown[];
+    }
+
+    const updatedCategories = (categories as CategoryItem[]).map((cat) => {
+      const catProjects = byCategory[cat.id] || byCategory[cat.slug];
+      if (catProjects !== undefined) {
+        const mapped = catProjects.map((p) => ({
+          id: p.id,
+          title: p.title,
+          year: p.year || '2025',
+          shortDesc: p.tagline || p.description || p.title,
+          type: (p.tags && p.tags[0] ? p.tags[0].replace(/^#/, '') : '') || p.categoryName || 'Design',
+          image: p.imageUrl,
+        }));
+        return {
+          ...cat,
+          projects: mapped,
+        };
+      }
+      return cat;
+    });
+
+    fs.writeFileSync(portfolioFilePath, JSON.stringify(updatedCategories, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Failed to sync to portfolio.json:', err);
+  }
+}
 
 function getProjectsData(): ProjectRecord[] {
   try {
@@ -45,6 +95,7 @@ function saveProjectsData(data: ProjectRecord[]) {
     fs.mkdirSync(dir, { recursive: true });
   }
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
+  syncToPortfolio(data);
 }
 
 // GET all projects (Public read for showcase)

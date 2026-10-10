@@ -142,5 +142,498 @@
     ],
     "imageUrl": "/assets/hero_landscape_z.jpg",
     "createdAt": "2026-08-22T05:00:00.000Z"
+  },
+  {
+    "id": "newday-magazine",
+    "title": "New Day Magazine",
+    "companyName": "New Day Magazine",
+    "year": "2024",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "Editorial Masthead & Publication Identity",
+    "description": "Editorial Masthead & Publication Identity",
+    "tags": [
+      "#LOGO",
+      "#Editorial"
+    ],
+    "imageUrl": "/images/showcase/newday-magazine-mockup.png",
+    "createdAt": "2026-10-09T18:48:41.682Z"
+  },
+  {
+    "id": "rizaim-cuisine",
+    "title": "Rizaim Culinary Identity",
+    "companyName": "Rizaim Culinary Identity",
+    "year": "2024",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "Digital Media & YouTube Culinary Branding",
+    "description": "Digital Media & YouTube Culinary Branding",
+    "tags": [
+      "#LOGO",
+      "#Media&Food"
+    ],
+    "imageUrl": "/images/showcase/rizaim-cuisine-mockup.png",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "abhisaar-tech",
+    "title": "Abhisaar Tech Identity",
+    "companyName": "Abhisaar Tech Identity",
+    "year": "2024",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "Enterprise Brand Identity & Visual System",
+    "description": "Enterprise Brand Identity & Visual System",
+    "tags": [
+      "#LOGO",
+      "#TechEnterprise"
+    ],
+    "imageUrl": "/images/showcase/abhisaar-stone-mockup.png",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "kaara-technologies",
+    "title": "Kaara Technologies Identity",
+    "companyName": "Kaara Technologies Identity",
+    "year": "2024",
+    "category": "logo",
+    "categoryName": "Logo & Brand Identity",
+    "folderSlug": "logo",
+    "tagline": "IT Infrastructure & Network Brand Identity",
+    "description": "IT Infrastructure & Network Brand Identity",
+    "tags": [
+      "#LOGO",
+      "#Infrastructure"
+    ],
+    "imageUrl": "/images/showcase/kaara-technologies.png",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-1",
+    "title": "CyberTech Launch Poster",
+    "companyName": "CyberTech Launch Poster",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "Futuristic advertising poster with neon typography",
+    "description": "Futuristic advertising poster with neon typography",
+    "tags": [
+      "#BANNERS",
+      "#PerformanceAd"
+    ],
+    "imageUrl": "/portfolio-assets/banners/banner_mockup_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-2",
+    "title": "Performance Digital Creative",
+    "companyName": "Performance Digital Creative",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "Conversion-optimized display ad campaign",
+    "description": "Conversion-optimized display ad campaign",
+    "tags": [
+      "#BANNERS",
+      "#DigitalCreative"
+    ],
+    "imageUrl": "/portfolio-assets/banners/designer_desk.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-3",
+    "title": "Urban Cyberpunk Billboard",
+    "companyName": "Urban Cyberpunk Billboard",
+    "year": "2024",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "Large-scale illuminated billboard mockup",
+    "description": "Large-scale illuminated billboard mockup",
+    "tags": [
+      "#BANNERS",
+      "#OOHBillboard"
+    ],
+    "imageUrl": "/portfolio-assets/banners/banner_mockup_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-4",
+    "title": "Multi-Format Social Ad Kit",
+    "companyName": "Multi-Format Social Ad Kit",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "Omni-channel advertising collateral suite",
+    "description": "Omni-channel advertising collateral suite",
+    "tags": [
+      "#BANNERS",
+      "#PaidSocial"
+    ],
+    "imageUrl": "/portfolio-assets/banners/hero_z_logo.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-5",
+    "title": "Immersive Launch Key Visual",
+    "companyName": "Immersive Launch Key Visual",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "Central campaign key visual fusing graphic mastery",
+    "description": "Central campaign key visual fusing graphic mastery",
+    "tags": [
+      "#BANNERS",
+      "#KeyVisual"
+    ],
+    "imageUrl": "/portfolio-assets/banners/story_bg_new.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "banners-6",
+    "title": "Motion Banner Storyboard",
+    "companyName": "Motion Banner Storyboard",
+    "year": "2025",
+    "category": "banners",
+    "categoryName": "High-Converting Banners & Posters",
+    "folderSlug": "banners",
+    "tagline": "High-impact storyboard frames for animated video hooks",
+    "description": "High-impact storyboard frames for animated video hooks",
+    "tags": [
+      "#BANNERS",
+      "#MotionGraphics"
+    ],
+    "imageUrl": "/portfolio-assets/banners/work_bg_new.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-1",
+    "title": "Future Connectivity Spread",
+    "companyName": "Future Connectivity Spread",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "Luxury dark-mode editorial spread with Swiss grid",
+    "description": "Luxury dark-mode editorial spread with Swiss grid",
+    "tags": [
+      "#MAGAZINE",
+      "#EditorialSpread"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/magazine_layout_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-2",
+    "title": "Quantum Computing Feature",
+    "companyName": "Quantum Computing Feature",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "66-page magazine layout delivered in just 72 hours",
+    "description": "66-page magazine layout delivered in just 72 hours",
+    "tags": [
+      "#MAGAZINE",
+      "#FullPublication"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/magazine_layout_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-3",
+    "title": "Cover Architecture & Masthead",
+    "companyName": "Cover Architecture & Masthead",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "High-impact editorial cover typography",
+    "description": "High-impact editorial cover typography",
+    "tags": [
+      "#MAGAZINE",
+      "#CoverDesign"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/hero_z_logo.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-4",
+    "title": "Editorial Photo Storyboard",
+    "companyName": "Editorial Photo Storyboard",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "Modern layout pairing typography with digital imagery",
+    "description": "Modern layout pairing typography with digital imagery",
+    "tags": [
+      "#MAGAZINE",
+      "#PhotoSpread"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/designer_desk.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-5",
+    "title": "Infographic Grid System",
+    "companyName": "Infographic Grid System",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "Complex data distilled into futuristic chart layouts",
+    "description": "Complex data distilled into futuristic chart layouts",
+    "tags": [
+      "#MAGAZINE",
+      "#Infographics"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/logo_2.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "magazine-6",
+    "title": "Publication Print Proofs",
+    "companyName": "Publication Print Proofs",
+    "year": "2024",
+    "category": "magazine",
+    "categoryName": "Full Magazine Layout",
+    "folderSlug": "magazine",
+    "tagline": "Press-ready CMYK calibrated master files with spot UV",
+    "description": "Press-ready CMYK calibrated master files with spot UV",
+    "tags": [
+      "#MAGAZINE",
+      "#PrintProduction"
+    ],
+    "imageUrl": "/portfolio-assets/magazine/logo_4.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-1",
+    "title": "AI Robot Mech Showdown",
+    "companyName": "AI Robot Mech Showdown",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "High-CTR gaming thumbnail featuring 3D typography",
+    "description": "High-CTR gaming thumbnail featuring 3D typography",
+    "tags": [
+      "#YOUTUBE",
+      "#Thumbnail"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/youtube_thumb_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-2",
+    "title": "Tech Review Hook Asset",
+    "companyName": "Tech Review Hook Asset",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "A/B tested thumbnail creative maximizing viewer curiosity",
+    "description": "A/B tested thumbnail creative maximizing viewer curiosity",
+    "tags": [
+      "#YOUTUBE",
+      "#A/BTestedHook"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/youtube_thumb_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-3",
+    "title": "Channel Visual Branding Kit",
+    "companyName": "Channel Visual Branding Kit",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "Responsive YouTube banner suite for all screen sizes",
+    "description": "Responsive YouTube banner suite for all screen sizes",
+    "tags": [
+      "#YOUTUBE",
+      "#ChannelSuite"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/hero_bg_new.png",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-4",
+    "title": "Esports Tournament Asset",
+    "companyName": "Esports Tournament Asset",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "Matchday graphics package for live broadcast scorecards",
+    "description": "Matchday graphics package for live broadcast scorecards",
+    "tags": [
+      "#YOUTUBE",
+      "#BroadcastLive"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/logo_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-5",
+    "title": "Creator End-Screen Cards",
+    "companyName": "Creator End-Screen Cards",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "Animated end-screen frames for subscriber conversion",
+    "description": "Animated end-screen frames for subscriber conversion",
+    "tags": [
+      "#YOUTUBE",
+      "#OutroGraphics"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/logo_3.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "youtube-6",
+    "title": "Streamer Lower Third Suite",
+    "companyName": "Streamer Lower Third Suite",
+    "year": "2025",
+    "category": "youtube",
+    "categoryName": "AI-Crafted YouTube Thumbnails",
+    "folderSlug": "youtube",
+    "tagline": "Cyberpunk HUD lower-third graphics with alert triggers",
+    "description": "Cyberpunk HUD lower-third graphics with alert triggers",
+    "tags": [
+      "#YOUTUBE",
+      "#HUDOverlay"
+    ],
+    "imageUrl": "/portfolio-assets/youtube/logo_5.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "instagram-1",
+    "title": "Lumina Volt Launch Post",
+    "companyName": "Lumina Volt Launch Post",
+    "year": "2025",
+    "category": "instagram",
+    "categoryName": "Instagram Brand Campaigns",
+    "folderSlug": "instagram",
+    "tagline": "Sleek luxury neon product launch post for feed engagement",
+    "description": "Sleek luxury neon product launch post for feed engagement",
+    "tags": [
+      "#INSTAGRAM",
+      "#ProductLaunch"
+    ],
+    "imageUrl": "/portfolio-assets/instagram/instagram_post_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "instagram-2",
+    "title": "Educational Carousel Kit",
+    "companyName": "Educational Carousel Kit",
+    "year": "2025",
+    "category": "instagram",
+    "categoryName": "Instagram Brand Campaigns",
+    "folderSlug": "instagram",
+    "tagline": "Seamless multi-slide swipeable carousel for high saves",
+    "description": "Seamless multi-slide swipeable carousel for high saves",
+    "tags": [
+      "#INSTAGRAM",
+      "#CarouselKit"
+    ],
+    "imageUrl": "/portfolio-assets/instagram/instagram_post_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "instagram-3",
+    "title": "Interactive Story Templates",
+    "companyName": "Interactive Story Templates",
+    "year": "2025",
+    "category": "instagram",
+    "categoryName": "Instagram Brand Campaigns",
+    "folderSlug": "instagram",
+    "tagline": "Dynamic 9:16 vertical story creatives with custom widgets",
+    "description": "Dynamic 9:16 vertical story creatives with custom widgets",
+    "tags": [
+      "#INSTAGRAM",
+      "#9:16Stories"
+    ],
+    "imageUrl": "/portfolio-assets/instagram/designer_desk.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "instagram-4",
+    "title": "Brand Mascot Campaign",
+    "companyName": "Brand Mascot Campaign",
+    "year": "2025",
+    "category": "instagram",
+    "categoryName": "Instagram Brand Campaigns",
+    "folderSlug": "instagram",
+    "tagline": "Character-driven social campaign posts establishing persona",
+    "description": "Character-driven social campaign posts establishing persona",
+    "tags": [
+      "#INSTAGRAM",
+      "#MascotCampaign"
+    ],
+    "imageUrl": "/portfolio-assets/instagram/logo_2.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "creator-1",
+    "title": "Cyber Stream Overlay & 3D Assets",
+    "companyName": "Cyber Stream Overlay & 3D Assets",
+    "year": "2026",
+    "category": "creator",
+    "categoryName": "Content Creation & Media",
+    "folderSlug": "creator",
+    "tagline": "Complete broadcast production package with animated 3D alerts",
+    "description": "Complete broadcast production package with animated 3D alerts",
+    "tags": [
+      "#CREATOR",
+      "#StreamOverlay"
+    ],
+    "imageUrl": "/assets/hero_landscape_z.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "creator-2",
+    "title": "Futuristic 3D Creator Studio",
+    "companyName": "Futuristic 3D Creator Studio",
+    "year": "2025",
+    "category": "creator",
+    "categoryName": "Content Creation & Media",
+    "folderSlug": "creator",
+    "tagline": "Virtual studio environment art direction for live broadcasts",
+    "description": "Virtual studio environment art direction for live broadcasts",
+    "tags": [
+      "#CREATOR",
+      "#3DVirtualSet"
+    ],
+    "imageUrl": "/portfolio-assets/creator/creator_package_1.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
+  },
+  {
+    "id": "creator-3",
+    "title": "Interactive Stream Alert Kit",
+    "companyName": "Interactive Stream Alert Kit",
+    "year": "2025",
+    "category": "creator",
+    "categoryName": "Content Creation & Media",
+    "folderSlug": "creator",
+    "tagline": "Custom sound-reactive alerts, sub badges, and cheer effects",
+    "description": "Custom sound-reactive alerts, sub badges, and cheer effects",
+    "tags": [
+      "#CREATOR",
+      "#AlertPackage"
+    ],
+    "imageUrl": "/portfolio-assets/creator/designer_desk.jpg",
+    "createdAt": "2026-10-09T18:48:41.683Z"
   }
 ]

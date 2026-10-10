@@ -71,36 +71,26 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           {category.projects && category.projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
               {category.projects.map((project) => (
-                <div key={project.id} className="group cursor-pointer">
+                <div key={project.id} className="group">
                   <div className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800/50 mb-4 sm:mb-6 bg-zinc-900">
                     <div
-                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-                      style={{
-                        backgroundImage: `url(${project.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
+                      className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${project.image})` }}
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="px-5 py-2.5 sm:px-6 sm:py-3 bg-black/80 text-white rounded-full text-xs sm:text-sm font-medium tracking-wide backdrop-blur-md border border-zinc-700/50 flex items-center gap-2">
-                        View Detail <i className="ph ph-arrow-up-right"></i>
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="px-4 py-2 rounded-full bg-cyan-400 text-zinc-950 font-bold text-xs">
+                        {project.type}
                       </span>
                     </div>
                   </div>
-                  
-                  <div className="flex justify-between items-start gap-4">
+                  <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5 sm:mb-2 group-hover:text-cyan-400 transition-colors">{project.title}</h3>
-                      <p className="text-zinc-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">{project.shortDesc}</p>
-                      <div className="flex items-center gap-3">
-                        <span className="text-[11px] sm:text-xs font-mono px-2.5 py-1 bg-zinc-900 rounded-full border border-zinc-800 text-cyan-400/80">
-                          {project.type}
-                        </span>
-                      </div>
+                      <span className="text-xs font-mono text-cyan-400 mb-1 block">{project.year}</span>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-zinc-400 mt-2">{project.shortDesc}</p>
                     </div>
-                    <span className="text-xs sm:text-sm font-mono text-zinc-500 bg-zinc-900 px-2.5 py-1 rounded-full border border-zinc-800/50 whitespace-nowrap">
-                      {project.year}
-                    </span>
                   </div>
                 </div>
               ))}

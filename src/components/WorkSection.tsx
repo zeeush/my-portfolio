@@ -3,17 +3,16 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import {
   Grid3x3,
   FolderOpen,
   Eye,
   ArrowRight,
+  Layers,
   X,
   ChevronLeft,
   ChevronRight,
-  Calendar,
-  Layers,
 } from 'lucide-react';
 import initialPortfolio from '@/data/portfolio.json';
 
@@ -62,7 +61,6 @@ export default function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   // Default view is always Folders first as requested
   const [viewMode, setViewMode] = useState<'folders' | 'projects'>('folders');
-  const [selectedProject, setSelectedProject] = useState<EnhancedProject | null>(null);
 
   // Category horizontal scroll tracking for sleek designed progress bar
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -232,34 +230,6 @@ export default function WorkSection() {
     });
   }, [categories, activeFilter]);
 
-  // Navigate next/prev project inside lightbox modal
-  const navigateProject = useCallback(
-    (direction: 1 | -1) => {
-      if (!selectedProject || filteredProjects.length === 0) return;
-      const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject.id);
-      if (currentIndex === -1) return;
-      const nextIndex = (currentIndex + direction + filteredProjects.length) % filteredProjects.length;
-      setSelectedProject(filteredProjects[nextIndex]);
-    },
-    [selectedProject, filteredProjects]
-  );
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    if (!selectedProject) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setSelectedProject(null);
-      } else if (e.key === 'ArrowRight') {
-        navigateProject(1);
-      } else if (e.key === 'ArrowLeft') {
-        navigateProject(-1);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject, navigateProject]);
-
   // Category icons mapping for Folders
   const categoryIcons: Record<string, string> = {
     logo: 'ph-crown',
@@ -271,6 +241,108 @@ export default function WorkSection() {
   };
 
   const activeTabInfo = FILTER_TABS.find((t) => t.id === activeFilter) || FILTER_TABS[0];
+
+  // Framer Motion Staggered Entrance Variants for Showcase Grid
+  const gridContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.04,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const projectItemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.96,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1] as const, // Premium spring-like ease curve
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.97,
+      transition: {
+        duration: 0.18,
+      },
+    },
+  };
+
+  // Subtle premium reveal animation for artwork images
+  const imageRevealVariants: Variants = {
+    hidden: {
+      scale: 1.1,
+      opacity: 0.75,
+      filter: 'blur(3px)',
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.75,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
+  // Staggered variants for Folders grid view
+  const folderContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.03,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const folderItemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 22,
+      scale: 0.97,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.97,
+      transition: {
+        duration: 0.18,
+      },
+    },
+  };
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -459,242 +531,136 @@ export default function WorkSection() {
       {/* ================= CONTENT VIEW: FOLDERS (DEFAULT) OR PROJECTS ================= */}
       {viewMode === 'folders' ? (
         /* FOLDERS VIEW (Default: Curated 3D Folders) */
-        <div className="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
-          {filteredCategories.map((cat, idx) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.55,
-                delay: (idx % 3) * 0.08,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
-              <Link
-                href={`/showcase/${cat.slug}`}
-                className="portfolio-folder group !p-5 sm:!p-7 !min-h-[250px] sm:!min-h-[280px]"
-              >
-                {/* Cover Preview Graphic Overlay */}
-                <div
-                  className="folder-preview-overlay transition-transform duration-700 group-hover:scale-105"
-                  style={{
-                    backgroundImage: `url(${cat.coverImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
-
-                {/* Folder Tab Header & Icon */}
-                <div className="flex items-center justify-between w-full relative z-10">
-                  <div className="folder-icon bg-zinc-950/80 backdrop-blur-md">
-                    <i className={`ph ${categoryIcons[cat.id] || 'ph-folder'}`}></i>
-                  </div>
-                  <span className="text-[10px] font-mono tracking-wider text-cyan-400/80 px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/20">
-                    {cat.projects?.length || 0} ASSETS
-                  </span>
-                </div>
-
-                {/* Folder Content & Impactful Title */}
-                <div className="folder-content bg-transparent pt-8 sm:pt-12">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] leading-snug font-['Outfit']">
-                    {cat.title}
-                  </h3>
-                  <p className="text-zinc-300 text-xs sm:text-sm mb-3 sm:mb-4 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] line-clamp-2">
-                    {cat.description}
-                  </p>
-
-                  <div className="folder-action-pill drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] py-1.5 px-3.5 sm:py-2 sm:px-4 text-xs">
-                    <span>Explore 3D Room</span>
-                    <i className="ph ph-arrow-right text-xs"></i>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      ) : (
-        /* PROJECTS VIEW (Individual Projects Showcase) */
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full"
+            variants={folderContainerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full"
           >
-            {filteredProjects.map((project, idx) => (
+            {filteredCategories.map((cat) => (
               <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{
-                  duration: 0.5,
-                  delay: (idx % 3) * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group relative flex flex-col rounded-2xl overflow-hidden bg-gradient-to-b from-[#131625] via-[#0d101a] to-[#080910] border border-cyan-500/20 hover:border-cyan-400/80 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_16px_45px_rgba(0,229,255,0.2)] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                key={cat.id}
+                variants={folderItemVariants}
               >
-                {/* Image Showcase Container */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/70">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
-                    referrerPolicy="no-referrer"
+                <Link
+                  href={`/showcase/${cat.slug}`}
+                  className="portfolio-folder group !p-5 sm:!p-7 !min-h-[250px] sm:!min-h-[280px]"
+                >
+                  {/* Cover Preview Graphic Overlay with Smooth Scale Reveal */}
+                  <div
+                    className="folder-preview-overlay transition-transform duration-700 group-hover:scale-105"
+                    style={{
+                      backgroundImage: `url(${cat.coverImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
                   />
-                  {/* Subtle Top & Bottom Gradient Shade for Overlay Legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
 
-                  {/* Soft Non-Intrusive Overlaid Badges: Folder Name (Left) & Year (Right) */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
-                    <span className="px-2.5 py-1 rounded-lg text-[11px] font-mono font-medium tracking-wide bg-black/55 backdrop-blur-md text-zinc-300 border border-white/10 shadow-sm flex items-center gap-1.5">
-                      <Layers className="w-2.5 h-2.5 text-cyan-400/80" />
-                      <span>{project.categoryTitle}</span>
-                    </span>
-                    <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-zinc-400 bg-black/55 backdrop-blur-md border border-white/10">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  {/* Hover Quick View Trigger */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-400 text-zinc-950 font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(0,229,255,0.6)] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Inspect Artwork</span>
+                  {/* Folder Tab Header & Icon */}
+                  <div className="flex items-center justify-between w-full relative z-10">
+                    <div className="folder-icon bg-zinc-950/80 backdrop-blur-md">
+                      <i className={`ph ${categoryIcons[cat.id] || 'ph-folder'}`}></i>
                     </div>
                   </div>
-                </div>
 
-                {/* Minimal Text Section: Project Name Only as Requested */}
-                <div className="p-4 sm:p-5 flex items-center justify-between gap-3">
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors font-['Outfit'] truncate">
-                    {project.title}
-                  </h3>
-                  <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 group-hover:border-cyan-400/50 group-hover:bg-cyan-400/10 flex items-center justify-center shrink-0 transition-all">
-                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all" />
+                  {/* Folder Content & Impactful Title */}
+                  <div className="folder-content bg-transparent pt-8 sm:pt-12">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] leading-snug font-['Outfit']">
+                      {cat.title}
+                    </h3>
+                    <p className="text-zinc-300 text-xs sm:text-sm mb-3 sm:mb-4 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] line-clamp-2">
+                      {cat.description}
+                    </p>
+
+                    <div className="flex items-center gap-2 flex-wrap pt-1">
+                      <div className="folder-action-pill drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] py-1.5 px-3.5 sm:py-2 sm:px-4 text-xs">
+                        <span>Explore 3D Room</span>
+                        <i className="ph ph-arrow-right text-xs"></i>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      ) : (
+        /* PROJECTS VIEW (Individual Projects Showcase Grid) */
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            variants={gridContainerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full"
+          >
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={projectItemVariants}
+                className="group relative flex flex-col rounded-2xl overflow-hidden bg-gradient-to-b from-[#131625] via-[#0d101a] to-[#080910] border border-cyan-500/20 hover:border-cyan-400/80 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_16px_45px_rgba(0,229,255,0.2)] transition-colors duration-300 hover:-translate-y-1.5"
+              >
+                <Link
+                  href={`/showcase/${project.categorySlug}`}
+                  className="flex flex-col w-full h-full"
+                >
+                  {/* Image Showcase Container with Smooth Staggered Reveal */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/70">
+                    <motion.div
+                      variants={imageRevealVariants}
+                      className="relative w-full h-full"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                        referrerPolicy="no-referrer"
+                      />
+                    </motion.div>
+                    {/* Subtle Top & Bottom Gradient Shade for Overlay Legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
+
+                    {/* Soft Non-Intrusive Overlaid Badges: Folder Name (Left) & Year (Right) */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+                      <span className="px-2.5 py-1 rounded-lg text-[11px] font-mono font-medium tracking-wide bg-black/55 backdrop-blur-md text-zinc-300 border border-white/10 shadow-sm flex items-center gap-1.5">
+                        <Layers className="w-2.5 h-2.5 text-cyan-400/80" />
+                        <span>{project.categoryTitle}</span>
+                      </span>
+                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-zinc-400 bg-black/55 backdrop-blur-md border border-white/10">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    {/* Hover Quick View Trigger */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-400 text-zinc-950 font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(0,229,255,0.6)] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Explore Showcase</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Minimal Text Section: Project Name Only as Requested */}
+                  <div className="p-4 sm:p-5 flex items-center justify-between gap-3">
+                    <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors font-['Outfit'] truncate">
+                      {project.title}
+                    </h3>
+                    <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 group-hover:border-cyan-400/50 group-hover:bg-cyan-400/10 flex items-center justify-center shrink-0 transition-all">
+                      <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
       )}
-
-      {/* ================= IN-SECTION LIGHTBOX MODAL ================= */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#090b14] border border-cyan-500/40 shadow-[0_0_60px_rgba(0,229,255,0.25)] flex flex-col no-scrollbar"
-            >
-              {/* Header Bar */}
-              <div className="sticky top-0 z-20 flex items-center justify-between p-4 sm:p-5 bg-[#090b14]/95 backdrop-blur-md border-b border-zinc-800">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#00e5ff]" />
-                  <span className="text-xs sm:text-sm font-mono tracking-wider uppercase text-cyan-300 font-semibold">
-                    {selectedProject.categoryTitle}
-                  </span>
-                  <span className="text-zinc-600">/</span>
-                  <span className="text-xs sm:text-sm text-zinc-400 font-medium">
-                    {selectedProject.type}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => navigateProject(-1)}
-                    className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/80 transition-colors"
-                    title="Previous Project (Left Arrow)"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => navigateProject(1)}
-                    className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/80 transition-colors"
-                    title="Next Project (Right Arrow)"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="p-2 rounded-xl bg-zinc-900 hover:bg-red-950/50 text-zinc-400 hover:text-red-400 border border-zinc-700/80 hover:border-red-500/40 transition-colors ml-2"
-                    title="Close (Esc)"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Main Artwork Preview Display */}
-              <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] bg-black flex items-center justify-center overflow-hidden">
-                <Image
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 900px"
-                  className="object-contain object-center"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              {/* Project Metadata & Action Panel */}
-              <div className="p-5 sm:p-8 flex flex-col md:flex-row items-start justify-between gap-6 bg-gradient-to-b from-[#090b14] to-[#040508]">
-                <div className="space-y-3 max-w-2xl">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
-                      {selectedProject.type}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-mono text-zinc-300 bg-zinc-900 border border-zinc-800 flex items-center gap-1.5">
-                      <Calendar className="w-3 h-3 text-cyan-400" />
-                      {selectedProject.year}
-                    </span>
-                  </div>
-
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white font-['Outfit'] tracking-tight">
-                    {selectedProject.title}
-                  </h2>
-
-                  <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
-                    {selectedProject.shortDesc}
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0">
-                  <Link
-                    href={`/showcase/${selectedProject.categorySlug}`}
-                    className="btn btn-secondary px-5 py-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all"
-                  >
-                    <span>Open in 3D Gallery</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="px-5 py-3 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 transition-colors text-center"
-                  >
-                    Back to Work Section
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
